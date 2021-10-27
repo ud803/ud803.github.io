@@ -19,8 +19,6 @@ paginate: 5
 paginate_path: '/blog/page:num'
 permalink: pretty
 
-version: 1.0.0
-
 # About/contact
 author:
   name: Lee Ui Dam
@@ -39,8 +37,6 @@ nav:
     - { Tags: '/blog/tags/' }
   About:          
     - '/about/'
-  Github Project: 
-    - 'http://ud803.github.io/'
 
 # Where are tags and categories displayed
 tag_page: '/blog/tags/'
