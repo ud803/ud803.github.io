@@ -2,7 +2,7 @@
 layout: post
 title: Example content
 comments: true
-category: Test
+categories: Test Test2
 ---
 
 
