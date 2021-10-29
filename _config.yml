@@ -1,6 +1,5 @@
 # Site Info
 title: lee.ui.dam
-tagline: 'UDAMATA'
 description: 'UDAMATA'
 url: http://ud803.github.io
 logo: '/public/img/real.PNG'
@@ -43,7 +42,7 @@ category_page: '/blog/categories/'
 
 hero:
   image: /public/img/clouds.jpg
-  caption: Data for a better world</a>
+  caption: Data for a better world .
 
 # Puglins
 mathjax: true # whether support mathjax
