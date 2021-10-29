@@ -1,5 +1,6 @@
 # Site Info
-title: lee.ui.dam
+title: lee
+tagline: ui.dam
 description: 'UDAMATA'
 url: http://ud803.github.io
 logo: '/public/img/real.PNG'
@@ -20,7 +21,7 @@ paginate_path: '/blog/page:num'
 # About/contact
 author:
   name: Lee Ui Dam
-  description: Lee Ui dam
+  description: Lee Ui Dam
   contact:
     github:    https://github.com/ud803
     email:     ud803da@gmail.com
@@ -42,7 +43,7 @@ category_page: '/blog/categories/'
 
 hero:
   image: /public/img/clouds.jpg
-  caption: Data for a better world .
+  caption: Data for a better world
 
 # Puglins
 mathjax: true # whether support mathjax
