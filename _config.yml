@@ -1,9 +1,9 @@
 # Site Info
-title: Codinfox Lanyon
+title: lee.ui.dam
 tagline: 'UDAMATA'
 description: 'UDAMATA'
 url: http://ud803.github.io
-logo: '/public/img/REAL.png'
+logo: '/public/imgs/real.PNG'
 
 # Site configurations
 gems:
@@ -43,8 +43,8 @@ tag_page: '/blog/tags/'
 category_page: '/blog/categories/'
 
 hero:
-  image: /public/img/we_will_be_giants_by_yalestewart.jpg
-  caption: Original Artwork &copy; <a href="http://yalestewart.deviantart.com/art/We-Will-Be-Giants-370176475">Yale Stewart</a>
+  image: /public/imgs/KakaoTalk_20211027_202624829.jpg
+  caption: Data for a better world</a>
 
 # Puglins
 mathjax: true # whether support mathjax
