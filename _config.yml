@@ -3,7 +3,7 @@ title: lee.ui.dam
 tagline: 'UDAMATA'
 description: 'UDAMATA'
 url: http://ud803.github.io
-logo: '/public/imgs/real.PNG'
+logo: '/public/img/real.PNG'
 
 # Site configurations
 gems:
@@ -43,7 +43,7 @@ tag_page: '/blog/tags/'
 category_page: '/blog/categories/'
 
 hero:
-  image: /public/imgs/KakaoTalk_20211027_202624829.jpg
+  image: /public/img/KakaoTalk_20211027_202624829.jpg
   caption: Data for a better world</a>
 
 # Puglins
