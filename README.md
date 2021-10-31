@@ -4,4 +4,4 @@
 
 [Codinfox-Lanyon](https://github.com/poole/lanyon)의 저장소를 포크한 것입니다. 
 
-여기로 방문해주세요 :) [here](http://ud803.github.io).
+[여기](http://ud803.github.io)를 눌러 방문해주세요 :)
