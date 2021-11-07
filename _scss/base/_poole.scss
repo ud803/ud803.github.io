@@ -274,6 +274,7 @@ tbody tr:nth-child(odd) th {
  */
 
 .message:before {
+  font-family:FontAwesome;
   content: "\f05a";
 }
 
@@ -288,6 +289,7 @@ tbody tr:nth-child(odd) th {
 }
 
 .tip:before {
+  font-family:FontAwesome;
   content: "\f046";
 }
 
@@ -302,6 +304,7 @@ tbody tr:nth-child(odd) th {
 }
 
 .warning:before {
+  font-family:FontAwesome;
   content: "\f06a";
 }
 .warning {
@@ -315,6 +318,7 @@ tbody tr:nth-child(odd) th {
 }
 
 .exclamation {
+    font-family:FontAwesome;
     content: "\f071";
 }
 .exclamation {
