@@ -1,15 +1,15 @@
 ---
 layout: post
-title: <ArangoDB> 5. AQL(Arango Query Lang) 배워보기 2 - Read / Update / Delete
+title: <ArangoDB> 5. AQL(Arango Query Lang) 배워보기 2 - RETURN / UPDATE / REPLACE / UPSERT / DELETE
 categories: ArangoDB
 ---
   
 <div class="message">
-저번 시간에 이어서 아랑고DB의 AQL을 활용해 데이터를 다루는 방법을 배워보자. READ, UPDATE, DELETE, UPSERT 등의 문법을 살펴볼 것임
+저번 시간에 이어서 아랑고DB의 AQL을 활용해 데이터를 다루는 방법을 배워보자. RETURN, UPDATE, REPLACE, UPSERT, DELETE 등의 문법을 살펴볼 것임
 </div>
 
-## 1. READ, UPDATE, DELETE, UPSERT 
-### READ 
+## 1. RETURN, UPDATE, REPLACE, UPSERT, DELETE 
+### RETURN 
 지난 시간에는 데이터를 삽입하는 `INSERT` 연산을 배워보았다. 이제 데이터를 넣었으니 꺼내보자.
 AQL에서 데이터를 꺼내는 방법은 `RETURN` 연산을 통해서이다. 
 
