@@ -97,7 +97,9 @@ FOR movie in titles
 {% endhighlight %}
 
 ### UPDATE 
-`UPDATE`는 컬렉션의 도큐먼트를 부분적으로 업데이트하는 연산이다. 주어진 키로 도큐먼트를 찾아내어, 특정 필드를 업데이트한다.
+`UPDATE`는 컬렉션의 도큐먼트를 부분적으로 업데이트하는 연산이다. 
+  
+주어진 키로 도큐먼트를 찾아내어, 특정 필드를 업데이트한다.
   
 <div class="tip">  
 시스템 필드인 `_id`, `_key`, `_rev`는 업데이트가 불가능하고, 엣지 컬렉션의 `_from`과 `_to`는 업데이트가 가능하다는 점을 알아두자.
@@ -117,6 +119,7 @@ UPDATE {"_key" : "178833"} WITH {"title" : "Avengers 2020"} IN titles
 {% endhighlight %}
   
 두 방식은 언제 어떻게 사용하는게 편할까? 아래와 같은 상황에서는 두번째 방식이 더 편할 것이다.
+
 상황 : _Avengers 2020 이라는 제목을 가진 영화를 Avengers 3030으로 업데이트하고싶다._
 {% highlight sql %}
 // 첫번째 방식
@@ -134,7 +137,8 @@ FOR movie in titles
 {% endhighlight %}
 
 필요할 때 상황에 맞게 쓰면 될 듯
-또한 `UPDATE` 구문은 업데이트 하기 전 도큐먼트와 하고 난 이후의 도큐먼트를 반환할 수 있다. 
+
+  또한 `UPDATE` 구문은 업데이트 하기 전 도큐먼트와 하고 난 이후의 도큐먼트를 반환할 수 있다. 
 {% highlight sql %}
 UPDATE document IN collection options RETURN OLD
 UPDATE document IN collection options RETURN NEW
@@ -145,7 +149,7 @@ UPDATE keyExpression WITH document IN collection options RETURN NEW
 `UPDATE`도 `INSERT`와 마찬가지로 여러가지 옵션을 줄 수 있다. 
 - `ignoreErrors` : 업데이트에서 발생하는 에러 (unique key constraint violation이나 non-existing document) 무시
 - `keepNull` : `null`로 필드 업데이트 할 수 있게 해줌. 디폴트로는 `null`이 저장이 안 된다. (필드가 안생김)
-- 'mergeObjects' : 오브젝트 필드의 경우, 업데이트 오브젝트에 명시되지 않은 필드들을 `merge`해서 그대로 둘 지, 아니면 없앨지를 결정한다.
+- `mergeObjects` : 오브젝트 필드의 경우, 업데이트 오브젝트에 명시되지 않은 필드들을 `merge`해서 그대로 둘 지, 아니면 없앨지를 결정한다.
  
 마지막 옵션만 조금 더 설명하자면, {'target' : {'a' : 1, 'b': 2}}인 도큐먼트에서 {'target' : {'a': 3}}으로 업데이트 하는 상황을 가정하면,
 - `mergeObjects`가 True인 디폴트의 경우, {'target' : {'a':3, 'b': 2}}가 된다
