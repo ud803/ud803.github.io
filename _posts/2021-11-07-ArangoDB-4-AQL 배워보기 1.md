@@ -54,7 +54,7 @@ FOR title IN titles
   
 글에서 계속해서 나오는 도큐먼트는 컬렉션에서 최상위 데이터 레벨을 의미한다. 즉, 오브젝트나 도큐먼트나 같은 형태이지만 컬렉션에 들어가는 레코드로써의 의미를 위해 도큐먼트라는 표현을 쓴다. 하나의 도큐먼트 내에 또다른 도큐먼트 형태가 있다면 (즉, nested object) 보통 오브젝트라고 분리하여 부르는 것 같다. 
   
-### CREATE 1. INSERT 
+### CREATE
 <div class="exclamation">
 아래 예시를 따라하기 전에, Collections에서 titles를 선택하고, 탑바의 Settings를 눌러 데이터를 Truncate 해주자.
 그리고 탑바의 Indexes에서 +를 누르고, Persistent Type을 선택, Fields와 Name에는 title을 입력하고, Unique를 체크하고 Create을 눌러주자.
@@ -65,7 +65,7 @@ FOR title IN titles
 컬렉션 설정에서 Delete는 컬렉션을 아예 통째로 없애는 것이고, Truncate은 나머지 설정값은 그대로 둔 채 도큐먼트들만 지운다.
 </div>
   
-INSERT는 말그대로 특정 컬렉션에 도큐먼트를 삽입하는 연산이며, 아래와 같이 쓰인다.
+`INSERT`는 말그대로 특정 컬렉션에 도큐먼트를 삽입하는 연산이며, 아래와 같이 쓰인다.
   
 {% highlight sql %}
 // 기본 형태
