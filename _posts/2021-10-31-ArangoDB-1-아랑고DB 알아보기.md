@@ -2,6 +2,7 @@
 layout: post
 title: <ArangoDB> 1. 아랑고DB 알아보기 
 categories: ArangoDB
+tags: [아랑고DB, ArangoDB, 그래프DB]
 ---
 
 <div class="message">
