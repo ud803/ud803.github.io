@@ -1,8 +1,8 @@
 ---
 layout: post
 title: <ArangoDB> 2. 아랑고DB 세팅하기 on Ubuntu 
-categories: ArangoDB
-tags: [아랑고DB, ArangoDB, 그래프DB]
+categories: 아랑고DB
+tags: [아랑고DB, 그래프DB]
 ---
   
 <div class="message">
