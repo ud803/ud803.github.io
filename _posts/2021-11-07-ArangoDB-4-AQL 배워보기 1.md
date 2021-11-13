@@ -2,6 +2,8 @@
 layout: post
 title: <ArangoDB> 4. AQL(Arango Query Lang) 배워보기 1 - WebUI / INSERT
 categories: ArangoDB
+tags: [아랑고DB, ArangoDB, 그래프DB]
+
 ---
   
 <div class="message">
