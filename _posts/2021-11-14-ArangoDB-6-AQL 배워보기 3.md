@@ -108,7 +108,7 @@ UPSERT 연산에서 lookup 파트와 insert/update/replace 파트는 아토믹�
 UPSERT를 대량으로 하게되면 intermediate commit을 하게 되어 전체 연산이 끝나기 전에 중간 연산을 write하게 된다!
 </div>
 
-`UPSERT`는 매우 유용한 기능이지만, 위와 같은 한계점들이 존재한다. 또한, `UPSERT`는 아랑고DB에서 HTTP API를 제공해주지 않는 연산 중 하나이다. 나머지 연산들은 모두 API가 열려있지만, `UPSERT`만은 AQL을 통해서만 수행이 가능하다.
+`UPSERT`는 매우 유용한 기능이지만, 위와 같이 사용에 주의해야할 점들이 존재한다. 또한, `UPSERT`는 아랑고DB에서 HTTP API를 제공해주지 않는 연산 중 하나이다. 나머지 연산들은 모두 API가 열려있지만, `UPSERT`만은 AQL을 통해서만 수행이 가능하다.
 
 이는 많은 아랑고 유저들이 개선을 원하는 부분 중 하나인데 아직까지 해결되고 있지는 않다. [깃헙 이슈](https://github.com/arangodb/arangodb/issues/2542) 참고.
 
@@ -144,7 +144,7 @@ AQL 기초 1~3편을 통해 기초 연산들을 배워보았다. 그럼 언제 �
 
 왜 `UPSERT - UPDATE`가 아니고 `REPLACE`를 썼을까? 단순히 통계값이 방문자수 하나이면 `UPDATE`가 간편하지만, 통계값이 무수히 많다면 `REPLACE` 하나로 전체 도큐먼트를 통째로 교체하는게 낫다.
 
-**아니면,** [앞서 배운 INSERT의 OPTIONS](https://ud803.github.io/%EC%95%84%EB%9E%91%EA%B3%A0db/2021/11/07/ArangoDB-4-AQL-%EB%B0%B0%EC%9B%8C%EB%B3%B4%EA%B8%B0-1/)가 기억나는가? 얘를 써도 좋다.
+**아니면, [앞서 배운 INSERT의 OPTIONS](https://ud803.github.io/%EC%95%84%EB%9E%91%EA%B3%A0db/2021/11/07/ArangoDB-4-AQL-%EB%B0%B0%EC%9B%8C%EB%B3%B4%EA%B8%B0-1/)**가 기억나는가? 얘를 써도 좋다.
 
 두 연산이 완전히 동일한 것인지에 대한 의문이 드는데, 이 부분은 Arango Community에 질문 후 답변이 오면 여기에 수정해두도록 하겠다.
 
@@ -154,7 +154,7 @@ AQL 기초 1~3편을 통해 기초 연산들을 배워보았다. 그럼 언제 �
 
 다음 시간부터는 AQL의 꽃인 그래프 관련 연산을 살펴본다. 그래프 횡단부터 시작하여, 각 횡단 단계에서 실행할 수 있는 여러가지 연산들을 배워보자.
 
-아~주 재미있는 시간이 될 것이다 :)
+아~주 재미있는 시간이 될 것이다. 기대해도 좋다 :)
 
   
 1. [아랑고DB란? 왜 쓰는가?](https://ud803.github.io/%EC%95%84%EB%9E%91%EA%B3%A0db/2021/10/31/ArangoDB-1-%EC%95%84%EB%9E%91%EA%B3%A0DB-%EC%95%8C%EC%95%84%EB%B3%B4%EA%B8%B0/)
