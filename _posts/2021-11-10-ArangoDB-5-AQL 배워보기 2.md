@@ -119,7 +119,10 @@ UPDATE {"_key": "178833", "title" : "Avengers 2001"} IN titles
 // 두번째 방식. 위와 같은 결과를 만든다
 UPDATE {"_key" : "178833"} WITH {"title" : "Avengers 2020"} IN titles
 {% endhighlight %}
-  
+<div class="important">
+UPDATE는 keyExpression을 통해 특정 _key를 기준으로 업데이트하기 때문에 다중 도큐먼트에 대한 업데이트를 신경 쓸 필요가 없다.
+즉, _key는 항상 unique하기 때문에 UPDATE 연산도 고유하다.
+</div>
 두 방식은 언제 어떻게 사용하는게 편할까? 아래와 같은 상황에서는 두번째 방식이 더 편할 것이다.
 
 상황 : _Avengers 2020 이라는 제목을 가진 영화를 Avengers 3030으로 업데이트하고싶다._
