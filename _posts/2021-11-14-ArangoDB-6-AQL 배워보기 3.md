@@ -24,7 +24,7 @@ UPDATE와 마찬가지로 시스템 필드인 `_id`, `_key`, `_rev`는 업데이
 나머지 방식이나 Options 같은 경우도 `UPDATE`와 동일하기 때문에 건너뛴다. `UPDATE`에 관한 이전 글은 [여기](https://ud803.github.io/%EC%95%84%EB%9E%91%EA%B3%A0db/2021/11/10/ArangoDB-5-AQL-%EB%B0%B0%EC%9B%8C%EB%B3%B4%EA%B8%B0-2/)를 보면 됨
 
 ### REMOVE
-`UPSERT` 전에 쉬운 `REMOVE` 먼저 잠깐 살펴본다. 이름 그대로 도큐먼트를 제거하는 연산이며, _keyExpression_을 사용한다. 즉, `_key`값을 기준으로 제거할 도큐먼트를 찾는다.
+`UPSERT` 전에 쉬운 `REMOVE` 먼저 잠깐 살펴본다. 이름 그대로 도큐먼트를 제거하는 연산이며, _keyExpression_ 을 사용한다. 즉, `_key`값을 기준으로 제거할 도큐먼트를 찾는다.
 
 아래 문법처럼 사용하며, 간단하니까 얘도 생략한다.
 
@@ -32,7 +32,7 @@ UPDATE와 마찬가지로 시스템 필드인 `_id`, `_key`, `_rev`는 업데이
 
 
 ### UPSERT
-마지막으로 볼 연산자는 `UPSERT`라는 재미있는 연산이다. UPSERT는 `UPDATE`와 `INSERT`의 합성어로써 아래 두 가지 상황에 맞는 동작을 한다.
+마지막으로 볼 연산자는 `UPSERT`라는 재미있는 연산이다. `UPSERT`는 `UPDATE`와 `INSERT`의 합성어로써 아래 두 가지 상황에 맞는 동작을 한다.
 - 데이터가 없으면 `INSERT`를 한다.
 - 데이터가 이미 존재하면 `UPDATE`나 `REPLACE`를 한다.
 
@@ -40,9 +40,12 @@ UPDATE와 마찬가지로 시스템 필드인 `_id`, `_key`, `_rev`는 업데이
 1. UPSERT _searchExpression_ INSERT _insertExpression_ UPDATE _updateExpression_ IN collection
 2. UPSERT _searchExpression_ INSERT _insertExpression_ REPLACE _updateExpression_ IN collection
 
-여기서 주목해야할 점은 _keyExpression_을 통해 `_key`를 기준으로하는 `UPDATE` 연산과 달리, `UPSERT`는 _searchExpression_을 기준으로 삼는다는 점이다.
-즉, **조건에 따라 여러 도큐먼트가 `UPSERT`의 대상이 될 수 있으며 그들 중 하나가 임의로 대상이 된다는 것이다.**
-
+여기서 주목해야할 점은 _keyExpression_ 을 통해 `_key`를 기준으로하는 `UPDATE` 연산과 달리, `UPSERT`는 _searchExpression_ 을 기준으로 삼는다는 점이다. 이는 아래 세 가지 포인트를 갖는다.
+  
+- **`_key`값에 국한되지 않고 여러 필드로 조건을 걸 수 있다!**
+- **동시에, `_key`는 고유했지만 필드는 고유하지 않을 수 있기에 여러 도큐먼트가 `UPSERT`의 대상이 될 수 있다**
+- **그리고 그들 중 하나가 임의로 대상 지정된다**
+  
 <div class="important">
 따라서 UPSERT의 lookup 과정에서 성능을 높이기 위해서는 반드시 lookup 대상의 필드들에 인덱스를 걸어주어야 한다. 그렇지 않으면 UPSERT의 성능은 현저하게 떨어진다.
 </div>
