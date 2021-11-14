@@ -46,7 +46,7 @@ UPDATE와 마찬가지로 시스템 필드인 `_id`, `_key`, `_rev`는 업데이
 - **동시에, `_key`는 고유했지만 필드는 고유하지 않을 수 있기에 여러 도큐먼트가 `UPSERT`의 대상이 될 수 있다**
 - **그리고 그들 중 하나가 임의로 대상 지정된다**
   
-<div class="important">
+<div class="exclamation">
 따라서 UPSERT의 lookup 과정에서 성능을 높이기 위해서는 반드시 lookup 대상의 필드들에 인덱스를 걸어주어야 한다. 그렇지 않으면 UPSERT의 성능은 현저하게 떨어진다.
 </div>
 
