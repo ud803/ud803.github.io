@@ -209,9 +209,9 @@ AQL은 Arango Query Lang의 약자로, SQL처럼 편리하게 아랑고DB를 조
 ## 4. 어디까지 왔나
 다음 글에서는 아랑고DB의 Web UI를 통해 우리가 넣은 데이터를 살펴보고, 다양한 기능들을 살펴보려고 한다.
 
-1. [아랑고DB란? 왜 쓰는가?](https://ud803.github.io/arangodb/2021/10/31/ArangoDB-1-%EC%95%84%EB%9E%91%EA%B3%A0DB-%EC%95%8C%EC%95%84%EB%B3%B4%EA%B8%B0/)
-2. [아랑고DB 세팅하기 on Ubuntu](https://ud803.github.io/arangodb/2021/11/02/ArangoDB-2-%EC%95%84%EB%9E%91%EA%B3%A0DB-%EC%84%B8%ED%8C%85%ED%95%98%EA%B8%B0-on-Ubuntu/)
+1. [아랑고DB란? 왜 쓰는가?](https://ud803.github.io/%EC%95%84%EB%9E%91%EA%B3%A0db/2021/10/31/ArangoDB-1-%EC%95%84%EB%9E%91%EA%B3%A0DB-%EC%95%8C%EC%95%84%EB%B3%B4%EA%B8%B0/)
+2. **(지금 보고있는 글)아랑고DB 세팅하기 on Ubuntu**
 3. **(지금 보고있는 글)아랑고DB 쉘로 붙어서 명령어 체험해보기, 실체 파악해보기**
-4. [AQL(Arango Query Lang) 배워보기 1](https://ud803.github.io/arangodb/2021/11/07/ArangoDB-4-AQL-%EB%B0%B0%EC%9B%8C%EB%B3%B4%EA%B8%B0-1/)
-5. [AQL(Arango Query Lang) 배워보기 2 - RETURN / UPDATE](https://ud803.github.io/arangodb/2021/11/10/ArangoDB-5-AQL-%EB%B0%B0%EC%9B%8C%EB%B3%B4%EA%B8%B0-2/)
+4. [AQL(Arango Query Lang) 배워보기 1](https://ud803.github.io/%EC%95%84%EB%9E%91%EA%B3%A0db/2021/11/07/ArangoDB-4-AQL-%EB%B0%B0%EC%9B%8C%EB%B3%B4%EA%B8%B0-1/)
+5. [AQL(Arango Query Lang) 배워보기 2 - RETURN / UPDATE](https://ud803.github.io/%EC%95%84%EB%9E%91%EA%B3%A0db/2021/11/10/ArangoDB-5-AQL-%EB%B0%B0%EC%9B%8C%EB%B3%B4%EA%B8%B0-2/)
 6. AQL(Arango Query Lang) 배워보기 3 - REPLACE / UPSERT / REMOVE
