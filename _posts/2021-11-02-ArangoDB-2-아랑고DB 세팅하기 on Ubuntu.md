@@ -1,6 +1,6 @@
 ---
 layout: post
-title: <ArangoDB> 2. 아랑고DB 세팅하기 on Ubuntu 
+title: <아랑고DB> 2. 아랑고DB 세팅하기 on Ubuntu 
 categories: 아랑고DB
 tags: [아랑고DB, 그래프DB]
 ---
