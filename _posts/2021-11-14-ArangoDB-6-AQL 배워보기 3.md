@@ -1,6 +1,6 @@
 ---
 layout: post
-title: <ArangoDB> 6. AQL(Arango Query Lang) 배워보기 3 - REPLACE / UPSERT / REMOVE
+title: <아랑고DB> 6. AQL(Arango Query Lang) 배워보기 3 - REPLACE / UPSERT / REMOVE
 categories: 아랑고DB
 tags: [아랑고DB, 그래프DB]
 ---
