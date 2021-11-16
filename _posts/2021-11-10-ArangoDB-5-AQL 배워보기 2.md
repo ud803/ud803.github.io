@@ -1,6 +1,6 @@
 ---
 layout: post
-title: <ArangoDB> 5. AQL(Arango Query Lang) 배워보기 2 - RETURN / UPDATE
+title: <아랑고DB> 5. AQL(Arango Query Lang) 배워보기 2 - RETURN / UPDATE
 categories: 아랑고DB
 tags: [아랑고DB, 그래프DB]
 
