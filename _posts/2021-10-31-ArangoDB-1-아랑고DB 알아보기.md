@@ -1,6 +1,6 @@
 ---
 layout: post
-title: \[아랑고DB\] 1. 아랑고DB 알아보기 
+title: [아랑고DB] 1. 아랑고DB 알아보기 
 categories: 아랑고DB
 tags: [아랑고DB, 그래프DB]
 ---
