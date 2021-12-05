@@ -194,7 +194,7 @@ FOR origin IN airports
 {% highlight sql %}
 FOR airport, flight IN 2..2 OUTBOUND 'airports/FLL' flights
 COLLECT WITH COUNT INTO length
-        RETURN length
+    RETURN length
 {% endhighlight %}
 
 2번에 걸쳐 도달하기 때문에, 깊이를 2로 맞춰주었다. 정말로 위 경로가 맞는지 보려면 아래 AQL의 결과와 비교해보면 됨.
