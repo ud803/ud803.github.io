@@ -51,7 +51,11 @@ arangoimport --file flights.csv --collection flights --create-collection true --
 
 이제 이 데이터들을 기반으로 그래프 횡단에 대해 배워보자.
 
-## 3. 그래프 횡단 Grpah Traversal
+## 3. 그래프 횡단 문법
+
+<div class="exclamation">
+앞선 7장에서 말한 것처럼, 여기서는 ArangoDB의 anonymous graph를 사용한다.  
+</div>
 
 그래프 횡단이란, 그래프의 엣지를 따라 움직이는 행위를 지칭한다. 이때 횡단에서 몇 개의 엣지를 이동하는지를 **횡단의 깊이 Traversal Depth**라고 부른다.
 
@@ -70,7 +74,7 @@ FOR vertex[, edge[, path]]
 
 위 문법을 그대로 해석하면, 아래 정도가 되겠다.
 
-> startVertex를 출발점으로 잡고, 이 출발점과 연결되어 있는 edgeCollectionName에 연결된 엣지 중에서, 출발점에서 뻗어나가거나(OUTBOUND) | 들어오거나(INBOUND) | 둘 중 하나거나(ANY) 에 해당하는데, 깊이가 min~max 사이인 경로에 해당하는 값들을 리턴해라. 이때, 리턴하는 값들은 도착하는 노드, 엣지, 경로이다. 
+> startVertex를 출발점으로 잡고, 이 출발점과 연결되어 있는 edgeCollectionName에 연결된 엣지 중에서, 출발점에서 뻗어나가거나(OUTBOUND) OR 들어오거나(INBOUND) OR 둘 중 하나거나(ANY) 에 해당하는데, 깊이가 min~max 사이인 경로에 해당하는 값들을 리턴해라. 이때, 리턴하는 값들은 도착하는 노드, 엣지, 경로이다. 
 
 천천히 하나씩 뜯어보자. 일단 위 쿼리에서 대괄호[]안의 내용은 생략이 가능하다는 의미이며, 세로 라인 |은 또는(or)의 의미로써 상황에 맞는 것을 사용하면 된다는 뜻임
 
@@ -98,6 +102,8 @@ FOR v, e IN OUTBOUND jfk flights
 
 ### IN [min[..max]] OUTBOUND|INBOUND|ANY startVertex
 
+![Node and Edges](/public/img/arango-traversal.png){: width="100%" height="100%"}
+
 여기서 `startVertex`는 횡단의 출발점을 의미하며, 이 출발점에서 나가는 방향을 OUTBOUND, 들어오는 방향을 INBOUND, 둘 다 상관없이 연결되어 있기만 하면 ANY라고 지칭한다. 
 
 셋 중 하나를 골라서 쓰면 된다.
@@ -107,6 +113,36 @@ FOR v, e IN OUTBOUND jfk flights
 ### edgeCollectionName[, more...]
 
 마지막으로 `edgeCollectionName`들은 횡단의 기준이 되는 엣지 컬렉션의 이름을 의미한다. 하나만 써도 되고, 컴마로 분리하여 여러 엣지를 쓸 수도 있다.
+
+## 4. 그래프 횡단 Graph Traversal
+
+그래프 문법을 보면 상당히 사용자 친화적임을 알 수 있다. 사람이 생각하는 횡단의 개념대로 쿼리를 구성할 수 있기 때문이다.
+
+이제 실제 예제를 통해 그래프 횡단에 익숙해져보자. 아주 쉬운 예제이지만, 꼭 혼자서 시도해본 뒤 답을 보자.
+
+**생각하는 포인트는, 1)출발점 2)횡단 엣지 3)엣지의 방향 4)도착점 5)리턴값 을 미리 생각해보는 것이다.
+**
+
+### LA국제공항(LAX)에서 한 번에 갈 수 있는 공항의 이름을 리턴해보기
+
+{% highlight sql %}
+FOR airport IN OUTBOUND 'airports/LAX' flights
+  RETURN DISTINCT airport.name
+{% endhighlight %}
+
+1) 출발점은 LAX, 2) 횡단 엣지는 `flights`, 3) 엣지의 방향은 출발이기 때문에 `OUTBOUND`, 4) 도착하는 임의의 공항은 `airport`라고 지칭하며, 5)리턴값은 공항의 이름이기 때문에 도착하는 노드에서 속성을 가져와야겠구나.
+
+위 예시에서 `DISTINCT`의 사용을 통해 고유한 공항의 이름만을 리턴하도록 해준다. `DISTINCT airport`라고 하게되면 오브젝트 전체를 지칭하는 것이므로 잘못된 쿼리임에 주의.
+
+### 비스마르크 공항(BIS)에 도착하는 항공 번호를 10개만 리턴해보기
+
+{% highlight sql %}
+FOR airport, flight IN INBOUND 'airports/BIS' flights
+  LIMIT 10
+  RETURN flight.FlightNum
+{% endhighlight %}
+
+1) 출발점은 임의의 공항인 `airport`라는 변수이며, 2) 횡단 엣지는 `flights`, 3) 엣지의 방향은 출발 노드에 도착하는 것이니까 `INBOUND`, 4) 도착하는 공항은 BIS, 5) 리턴값은 항공 번호이기 때문에 엣지에서 속성을 가져와야겠구나.
 
 
 
