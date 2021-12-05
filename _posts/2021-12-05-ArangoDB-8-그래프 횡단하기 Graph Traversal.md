@@ -44,7 +44,7 @@ arangoimport --file flights.csv --collection flights --create-collection true --
 ## 2. 데이터 살펴보기
 
 데이터 임포트가 완료되고 나면, 아랑고 WebUI로 가서 데이터를 살펴보자. `_system` 데이터베이스에 디폴트로 생성되었고, (위 명령어에서 데이터베이스를 지정해주면 새로운 데이터베이스에 만들 수도 있다.) 각각 `airports`와 `flights` 컬렉션에 생성되었다.
-`````
+
 `airports`는 5개 국가의 공항에 대한 위치 정보를 가지고 있고, 3375개의 노드 도큐먼트로 구성되어 있다.
 
 `flights`는 위 공항들을 잇는 엣지 도큐먼트이고, 출발 시간, 도착 시간, 항공편 번호 등의 비행에 관한 데이터를 가지고 있다. 약 44만 개의 데이터가 존재한다.
@@ -72,7 +72,6 @@ FOR vertex[, edge[, path]]
 
 > startVertex를 출발점으로 잡고, 이 출발점과 연결되어 있는 edgeCollectionName에 연결된 엣지 중에서, 출발점에서 뻗어나가거나(OUTBOUND) | 들어오거나(INBOUND) | 둘 중 하나거나(ANY) 에 해당하는데, 깊이가 min~max 사이인 경로에 해당하는 값들을 리턴해라. 이때, 리턴하는 값들은 도착하는 노드, 엣지, 경로이다. 
 
-
 천천히 하나씩 뜯어보자. 일단 위 쿼리에서 대괄호[]안의 내용은 생략이 가능하다는 의미이며, 세로 라인 |은 또는(or)의 의미로써 상황에 맞는 것을 사용하면 된다는 뜻임
 
 ### FOR vertex[, edge[, path]]
@@ -96,6 +95,19 @@ LET jfk = Document('airports/JFK')
 FOR v, e IN OUTBOUND jfk flights
   RETURN {v, e}
 {% endhighlight %}
+
+### IN [min[..max]] OUTBOUND|INBOUND|ANY startVertex
+
+여기서 `startVertex`는 횡단의 출발점을 의미하며, 이 출발점에서 나가는 방향을 OUTBOUND, 들어오는 방향을 INBOUND, 둘 다 상관없이 연결되어 있기만 하면 ANY라고 지칭한다. 
+
+셋 중 하나를 골라서 쓰면 된다.
+
+그리고 `min`, `max`는 생략 가능한데, 횡단의 깊이를 나타낸다. 생략하면 디폴트로 1..1로 설정되어 있음. 
+
+### edgeCollectionName[, more...]
+
+마지막으로 `edgeCollectionName`들은 횡단의 기준이 되는 엣지 컬렉션의 이름을 의미한다. 하나만 써도 되고, 컴마로 분리하여 여러 엣지를 쓸 수도 있다.
+
 
 
 ## 4. 어디까지 왔나
