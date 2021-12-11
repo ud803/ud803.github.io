@@ -146,7 +146,7 @@ FOR flight IN flights
   }
 {% endhighlight %}
 
-**위 내용에 대한 심화로, 리턴된 결과에 더하여 공항별 풀네임과 국가, 도시를 알고 싶다면 어떻게 해야할까? 답은 아래에 적어두겠음 **
+**위 내용에 대한 심화로, 리턴된 결과에 더하여 공항별 풀네임과 국가, 도시를 알고 싶다면 어떻게 해야할까? 답은 아래에 적어두겠음**
 
 ### flights 데이터에서 공항별로 최초 출발 비행편의 시간과, 최종 출발 비행편의 시간을 알고싶다. 
 
@@ -209,7 +209,6 @@ A가 가장 늦은 시간에 먹은 음식을 알려줘!라는 쿼리는 어떻�
 그냥 `MAX_BY(음식, 시간)`을 하게되면 시간이 최대인(가장 늦은 시간인) 데이터의 음식을 반환해주기 때문이다.
 
 **안타깝지만 AQL에도 해당 연산자는 없다. 하지만 아랑고DB 커뮤니티를 통해 아랑고DB 개발자들의 구현 방식을 배울 수 있었다.
-
 그 값진 내용을 여기에 공유한다 :)**
 
 AQL에서 배열의 크기 비교는 element-wise하게 이루어진다. 즉, 0번째 인덱스의 값부터 비교를 해나가는 방식이다.
@@ -256,7 +255,30 @@ FOR flight IN flights
 
 기준은 출발 시간이기 때문에 [출발 시간, 비행번호]의 배열에 대해 각각 `MIN`, `MAX` 연산을 취해주면 된다. 원리만 이해하면 정말 쉽다.
 
-## 5. 어디까지 왔나
+## 5. 심화 답
+위에서 나온 심화 문제의 답은 아래에 있다.
+
+핵심은, `Document()` 함수로 공항을 조회해 해당 결과를 리턴 값 안에 포함시켜주는 것이다.
+
+여기서 `COLLECT`의 그룹 기준인 `flight._to`가 ArangoDB에서 `_id`에 해당하기 때문에, 이 값을 `Document()`에서 바로 호출해 접근이 가능한 원리이다.
+
+{% highlight sql %}
+FOR flight IN flights
+  LIMIT 10000 // 리밋!!
+  COLLECT
+    airport= flight._to
+  AGGREGATE
+    cnt = COUNT(1)
+  INTO flight_infos = flight.FlightNum
+  RETURN {
+    airport,
+    cnt,
+    flight_infos,
+    fullname: Document(airport).name,
+    country: Document(airport).country
+  }
+  
+## 6. 어디까지 왔나
 
 이번 시간까지 해서 아랑고DB를 사용하기 위한 기본적인 지식들은 모두 익혔다. 기초 AQL부터 그래프 횡단, COLLECT까지 모두 훑었기 때문에 이제 실전에서 잘 써먹기만 하면 된다.
 
