@@ -178,3 +178,4 @@ AQL 기초 1~3편을 통해 기초 연산들을 배워보았다. 그럼 언제 �
 6. **(지금 보고있는 글) AQL(Arango Query Lang) 배워보기 3 - REPLACE / UPSERT / REMOVE**
 7. [그래프 개념잡기](https://ud803.github.io/%EC%95%84%EB%9E%91%EA%B3%A0db/2021/11/23/ArangoDB-7-%EA%B7%B8%EB%9E%98%ED%94%84-%EA%B0%9C%EB%85%90-%EC%9E%A1%EA%B8%B0/)
 8. [그래프 횡단하기 Graph Traversal](https://ud803.github.io/%EC%95%84%EB%9E%91%EA%B3%A0db/2021/12/05/ArangoDB-8-%EA%B7%B8%EB%9E%98%ED%94%84-%ED%9A%A1%EB%8B%A8%ED%95%98%EA%B8%B0-Graph-Traversal/)
+9. [데이터 모으기 COLLECT / AGGREGATE / MIN_BY, MAX_BY](https://ud803.github.io/%EC%95%84%EB%9E%91%EA%B3%A0db/2021/12/11/ArangoDB-9-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%AA%A8%EC%9C%BC%EA%B8%B0-COLLECT-AGGREGATE-MIN_BY-MAX_BY/)
