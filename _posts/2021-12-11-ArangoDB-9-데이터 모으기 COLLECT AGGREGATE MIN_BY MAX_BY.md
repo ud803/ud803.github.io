@@ -277,7 +277,8 @@ FOR flight IN flights
     fullname: Document(airport).name,
     country: Document(airport).country
   }
-  
+{% endhighlight %}
+
 ## 6. 어디까지 왔나
 
 이번 시간까지 해서 아랑고DB를 사용하기 위한 기본적인 지식들은 모두 익혔다. 기초 AQL부터 그래프 횡단, COLLECT까지 모두 훑었기 때문에 이제 실전에서 잘 써먹기만 하면 된다.
