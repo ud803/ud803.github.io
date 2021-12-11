@@ -42,7 +42,7 @@ FOR data in test_collection
   RETURN {id, visit_time}
 {% endhighlight %}
 
-AQL에서는 `FOR` 루프와 함께 `COLLECT`가 쓰이기 때문에, **데이터를 모은다**라는 표현이 어울린다고 본다.
+AQL에서는 `FOR` 루프와 함께 `COLLECT`가 쓰이기 때문에, **데이터를 모은다**라는 표현이 어울리는 것 같다. 
 
 ## 2. COLLECT 문법 익히기
 
