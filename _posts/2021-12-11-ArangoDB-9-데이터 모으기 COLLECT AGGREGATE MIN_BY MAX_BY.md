@@ -124,7 +124,7 @@ FOR airport IN airports
 ### flights 데이터에서 공항별로 도착했던 비행편의 수와 비행편의 정보를 알고싶다
 
 <div class="exclamation">
-flights 데이터는 40만 개가 넘는 데이터가 존재하기 때문에 서버의 성능이 좋지 않다면 LIMIT을 꼭 걸어주자!
+flights 데이터는 40만 개가 넘는 데이터가 존재하기 때문에 서버의 메모리가 작다면 LIMIT을 꼭 걸어주자!
 </div>
 
 1) 도착 공항별 데이터이기 때문에 기준은 공항이 된다
