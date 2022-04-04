@@ -5,6 +5,7 @@ url: https://ud803.github.io
 logo: '/public/img/real.PNG'
 
 # Site configurations
+future: true
 gems:
   - jekyll-paginate
 markdown: kramdown
