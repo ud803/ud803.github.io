@@ -1,6 +1,6 @@
 ---
 layout: post
-title: <데이터분석> 코호트 분석에 대한 모든 것
+title: <데이터분석> 코호트 분석 Cohort Analysis에 대한 모든 것
 categories: 데이터분석 코호트분석
 tags: [데이터분석 코호트분석]
 ---
@@ -218,7 +218,7 @@ whole_df.to_csv("ecommerce_cosmetics_sampled.csv", index=False)
 
 다른 방식으로 진행해도 되지만, 일반적으로 데이터가 DB에 들어있다고 가정하고 SQL을 통해 코호트 테이블의 기초 데이터를 만들고자 한다.
 
-여기서는 데이터베이스로 SQLite을 사용한다. SQLite은 이름 그대로 정말 라이트하게 사용할 수 있는 SQL DB 엔진이다. 별도의 설정도 필요 없고, 그냥 설치하고 곧바로 파이썬 소스로 데이터를 넣어주면 된다. 나는 맥OS를 쓰는데, 이미 설치가 되어 있어 생략했다. [여기](https://www.sqlite.org/index.html)서 최신 버전을 다운받자.
+여기서는 데이터베이스로 SQLite을 사용한다. SQLite은 이름 그대로 정말 라이트하게 사용할 수 있는 SQL DB 엔진이다. 별도의 설정도 필요 없고, 그냥 설치하고 곧바로 파이썬 소스로 데이터를 넣어주면 된다. 맥OS에는 이미 설치가 되어 있어 생략했다. [여기](https://www.sqlite.org/index.html)서 최신 버전을 다운받자.
 
 관계형 DB에서 가장 먼저 할 일은, DB 서버에 연결하고, 개별 DB에 접속하는 일이다. SQLite은 별도로 서버 개념이 없기 때문에, 실제로 코드를 돌리는 곳에 데이터를 저장한다.
 
@@ -726,6 +726,9 @@ round(pivot_table.div(pivot_table[0], axis='index'), 2)\
 
 이번에는 10월 한 달 동안 사용자가 본 브랜드별로 코호트를 만든다고 가정해보자. 마케터인 나는 브랜드별로 사용자의 성향이 다르고, 방문 성향도 다를 것이라고 생각한다. 따라서 브랜드에 따라 코호트를 나누었다.
 
+<div class="exclamation">
+일반적으로 코호트는 상호배타적(mutually exclusive)이다. 즉, 코호트끼리 겹치지 않는다. 아래 예시에서는 번거로움을 피하고자 그런 과정을 거치지 않았는데, 이 점은 주의하기 바람!
+</div>
 
 ```python
 result_2 = con.execute("""
