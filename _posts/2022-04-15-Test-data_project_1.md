@@ -1,3 +1,10 @@
+---
+layout: post
+title: <Test> Test 2
+categories: Test2
+tags: [Test2]
+---
+  
 # 1. 데이터 정제
 
 앞으로의 고객 데이터 분석에 사용할 토대를 만들기 위해, 캐글에서 가져온 데이터를 샘플링한다.
