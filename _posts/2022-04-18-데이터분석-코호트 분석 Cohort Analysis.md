@@ -1,6 +1,6 @@
 ---
 layout: post
-title: <데이터분석> 코호트 분석 Cohort Analysis에 대한 모든 것
+title: <데이터분석> 코호트 분석 파헤치기
 categories: 데이터분석 코호트분석
 tags: [데이터분석 코호트분석]
 ---
