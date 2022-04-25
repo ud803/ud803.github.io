@@ -75,7 +75,7 @@ tags: [데이터분석, 코호트분석]
 이제 실제 데이터셋을 통해 코호트 테이블을 그려보고, 간단한 분석을 진행해보자. 
 
 ### 1) 데이터 소개
-캐글에서 데이터를 가져왔고, [여기](https://www.kaggle.com/datasets/mkechinov/ecommerce-events-history-in-cosmetics-shop)서 다운로드 받을 수 있다. '2019-Dec' 부터 '2020-Jan' 까지 모두 다운받으면 된다.
+캐글에서 데이터를 가져왔고, [여기](https://www.kaggle.com/datasets/mkechinov/ecommerce-events-history-in-cosmetics-shop)서 다운로드 받을 수 있다. '2019-Oct' 부터 '2020-Feb' 까지 5개 파일 모두 다운받으면 된다.
 
 이 과정이 귀찮은 사람을 위해 이미 정제한 데이터도 올려두겠다. [여기를 눌러서 다운로드하기](https://raw.githubusercontent.com/ud803/ud803.github.io/main/public/data/ecommerce_cosmetics_sampled.csv)
 
@@ -110,11 +110,11 @@ for file in ['2019-Dec', '2019-Nov', '2019-Oct', '2020-Feb', '2020-Jan']:
     new_target.to_csv('{}-1000.csv'.format(file), index=False)
 ```
 
-    1000 (9931, 9)
-    1170 (17727, 9)
-    1247 (24049, 9)
-    1272 (21019, 9)
-    1502 (29313, 9)
+    1000 (9418, 9)
+    1141 (16677, 9)
+    1241 (17031, 9)
+    1270 (21948, 9)
+    1482 (27129, 9)
 
 
 이제 5개의 파일을 하나로 합쳐서, 최종 파일을 만든다. 앞서 말한대로 이미 정제된 파일은 위에 링크를 달아두었다.
@@ -131,7 +131,7 @@ print(whole_df.shape)
 whole_df.head(3)
 ```
 
-    (102039, 9)
+    (92203, 9)
 
 
 
@@ -169,39 +169,39 @@ whole_df.head(3)
   <tbody>
     <tr>
       <th>0</th>
-      <td>2019-12-01 00:43:00 UTC</td>
+      <td>2019-12-01 04:09:27 UTC</td>
       <td>view</td>
-      <td>5853128</td>
-      <td>1487580008246412266</td>
+      <td>5724233</td>
+      <td>1487580005092295511</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>20.00</td>
-      <td>252159723</td>
-      <td>1a63a5f4-f96f-4ca1-985f-8d64cbd153a9</td>
+      <td>14.60</td>
+      <td>504201396</td>
+      <td>10c40773-05d3-4fd8-af4c-16e8c9999bf4</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>2019-12-01 00:43:15 UTC</td>
-      <td>cart</td>
-      <td>5853127</td>
-      <td>1487580008263189483</td>
+      <td>2019-12-01 05:18:49 UTC</td>
+      <td>view</td>
+      <td>5900639</td>
+      <td>1487580005713052531</td>
       <td>NaN</td>
-      <td>NaN</td>
-      <td>10.48</td>
-      <td>252159723</td>
-      <td>1a63a5f4-f96f-4ca1-985f-8d64cbd153a9</td>
+      <td>ingarden</td>
+      <td>4.44</td>
+      <td>502359395</td>
+      <td>8dad7a10-5dc3-4c94-9880-bedbf53eeb1a</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>2019-12-01 00:43:47 UTC</td>
-      <td>cart</td>
-      <td>5853121</td>
-      <td>1487580008263189483</td>
+      <td>2019-12-01 05:46:02 UTC</td>
+      <td>view</td>
+      <td>5651938</td>
+      <td>1487580012902088873</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>10.48</td>
-      <td>252159723</td>
-      <td>1a63a5f4-f96f-4ca1-985f-8d64cbd153a9</td>
+      <td>6.33</td>
+      <td>574133915</td>
+      <td>4c7bf0a0-5f68-414c-b126-93b372b26a65</td>
     </tr>
   </tbody>
 </table>
@@ -218,7 +218,7 @@ whole_df.to_csv("ecommerce_cosmetics_sampled.csv", index=False)
 
 다른 방식으로 진행해도 되지만, 일반적으로 데이터가 DB에 들어있다고 가정하고 SQL을 통해 코호트 테이블의 기초 데이터를 만들고자 한다.
 
-여기서는 데이터베이스로 SQLite을 사용한다. SQLite은 이름 그대로 정말 라이트하게 사용할 수 있는 SQL DB 엔진이다. 별도의 설정도 필요 없고, 그냥 설치하고 곧바로 파이썬 소스로 데이터를 넣어주면 된다. 맥OS에는 이미 설치가 되어 있어 생략했다. [여기](https://www.sqlite.org/index.html)서 최신 버전을 다운받자.
+여기서는 데이터베이스로 SQLite을 사용한다. SQLite은 이름 그대로 정말 라이트하게 사용할 수 있는 SQL DB 엔진이다. 별도의 설정도 필요 없고, 그냥 설치하고 곧바로 파이썬 소스로 데이터를 넣어주면 된다. 나는 맥OS를 쓰는데, 이미 설치가 되어 있어 생략했다. [여기](https://www.sqlite.org/index.html)서 최신 버전을 다운받자.
 
 관계형 DB에서 가장 먼저 할 일은, DB 서버에 연결하고, 개별 DB에 접속하는 일이다. SQLite은 별도로 서버 개념이 없기 때문에, 실제로 코드를 돌리는 곳에 데이터를 저장한다.
 
@@ -243,7 +243,7 @@ cur.execute("""
 import pandas as pd
 
 # 아까 만든 데이터를 불러온다.
-data = pd.read_csv('ecommerce_cosmetics_sampled.csv')
+data = pd.read_csv('ecommerce_cosmetics_sampled_10000.csv')
 
 lists = []
 # 튜플 형태로 리스트에 넣어준다
@@ -414,59 +414,59 @@ pivot_table
   <tbody>
     <tr>
       <th>39</th>
-      <td>345.0</td>
-      <td>52.0</td>
-      <td>43.0</td>
-      <td>42.0</td>
-      <td>39.0</td>
-      <td>27.0</td>
-      <td>23.0</td>
-      <td>31.0</td>
-      <td>30.0</td>
+      <td>3402.0</td>
+      <td>576.0</td>
+      <td>456.0</td>
+      <td>398.0</td>
+      <td>355.0</td>
+      <td>248.0</td>
+      <td>226.0</td>
+      <td>261.0</td>
+      <td>253.0</td>
     </tr>
     <tr>
       <th>40</th>
-      <td>275.0</td>
-      <td>32.0</td>
-      <td>28.0</td>
-      <td>12.0</td>
-      <td>10.0</td>
-      <td>12.0</td>
-      <td>14.0</td>
-      <td>13.0</td>
+      <td>2790.0</td>
+      <td>405.0</td>
+      <td>296.0</td>
+      <td>230.0</td>
+      <td>204.0</td>
+      <td>185.0</td>
+      <td>189.0</td>
+      <td>186.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>41</th>
-      <td>232.0</td>
-      <td>35.0</td>
-      <td>22.0</td>
-      <td>20.0</td>
-      <td>20.0</td>
-      <td>16.0</td>
-      <td>16.0</td>
+      <td>2324.0</td>
+      <td>315.0</td>
+      <td>198.0</td>
+      <td>141.0</td>
+      <td>116.0</td>
+      <td>140.0</td>
+      <td>143.0</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>42</th>
-      <td>254.0</td>
-      <td>29.0</td>
-      <td>19.0</td>
-      <td>11.0</td>
-      <td>11.0</td>
-      <td>14.0</td>
+      <td>2185.0</td>
+      <td>244.0</td>
+      <td>147.0</td>
+      <td>137.0</td>
+      <td>137.0</td>
+      <td>136.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>43</th>
-      <td>190.0</td>
-      <td>25.0</td>
-      <td>11.0</td>
-      <td>8.0</td>
-      <td>14.0</td>
+      <td>2113.0</td>
+      <td>196.0</td>
+      <td>114.0</td>
+      <td>132.0</td>
+      <td>107.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -474,10 +474,10 @@ pivot_table
     </tr>
     <tr>
       <th>44</th>
-      <td>185.0</td>
-      <td>21.0</td>
-      <td>16.0</td>
-      <td>15.0</td>
+      <td>2101.0</td>
+      <td>180.0</td>
+      <td>193.0</td>
+      <td>145.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -486,9 +486,9 @@ pivot_table
     </tr>
     <tr>
       <th>45</th>
-      <td>230.0</td>
-      <td>18.0</td>
-      <td>12.0</td>
+      <td>1988.0</td>
+      <td>233.0</td>
+      <td>148.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -498,8 +498,8 @@ pivot_table
     </tr>
     <tr>
       <th>46</th>
-      <td>240.0</td>
-      <td>29.0</td>
+      <td>2229.0</td>
+      <td>277.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -510,7 +510,7 @@ pivot_table
     </tr>
     <tr>
       <th>47</th>
-      <td>212.0</td>
+      <td>2323.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -536,175 +536,163 @@ pivot_table
 
 round(pivot_table.div(pivot_table[0], axis='index'), 2)\
     .style.format({k: '{:,.0%}'.format for k in pivot_table})\
-    .background_gradient(cmap ='Blues', axis='columns', vmax=0.2) 
+    .background_gradient(cmap ='Blues', axis=None, vmax=0.2) 
 ```
 
 
 
 
 <style  type="text/css" >
-#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row0_col0,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row1_col0,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row2_col0,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row3_col0,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row4_col0,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row5_col0,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row6_col0,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row7_col0,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row8_col0{
+#T_3037e81c_c47c_11ec_b8ea_7210a9758097row0_col0,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row1_col0,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row2_col0,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row3_col0,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row4_col0,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row5_col0,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row6_col0,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row7_col0,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row8_col0{
             background-color:  #08306b;
             color:  #f1f1f1;
-        }#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row0_col1{
-            background-color:  #4594c7;
-            color:  #000000;
-        }#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row0_col2,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row0_col3{
-            background-color:  #9ac8e0;
-            color:  #000000;
-        }#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row0_col4{
-            background-color:  #b4d3e9;
-            color:  #000000;
-        }#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row0_col5{
-            background-color:  #e8f1fa;
-            color:  #000000;
-        }#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row0_col6,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row1_col8,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row2_col7,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row2_col8,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row3_col6,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row3_col7,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row3_col8,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row4_col5,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row4_col6,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row4_col7,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row4_col8,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row5_col4,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row5_col5,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row5_col6,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row5_col7,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row5_col8,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row6_col3,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row6_col4,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row6_col5,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row6_col6,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row6_col7,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row6_col8,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row7_col2,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row7_col3,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row7_col4,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row7_col5,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row7_col6,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row7_col7,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row7_col8,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row8_col1,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row8_col2,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row8_col3,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row8_col4,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row8_col5,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row8_col6,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row8_col7,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row8_col8{
-            background-color:  #f7fbff;
-            color:  #000000;
-        }#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row0_col7,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row0_col8{
-            background-color:  #d9e7f5;
-            color:  #000000;
-        }#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row1_col1,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row7_col1{
-            background-color:  #4a98c9;
-            color:  #000000;
-        }#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row1_col2{
-            background-color:  #6aaed6;
-            color:  #000000;
-        }#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row1_col3,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row1_col4,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row1_col5,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row3_col3,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row3_col4,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row4_col3{
-            background-color:  #d0e1f2;
-            color:  #000000;
-        }#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row1_col6,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row1_col7,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row6_col2{
-            background-color:  #c6dbef;
-            color:  #000000;
-        }#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row2_col1{
-            background-color:  #2171b5;
+        }#T_3037e81c_c47c_11ec_b8ea_7210a9758097row0_col1{
+            background-color:  #0d57a1;
             color:  #f1f1f1;
-        }#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row2_col2,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row2_col3,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row2_col4,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row5_col2{
-            background-color:  #7fb9da;
-            color:  #000000;
-        }#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row2_col5,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row2_col6,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row3_col2,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row4_col4{
-            background-color:  #a6cee4;
-            color:  #000000;
-        }#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row3_col1,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row5_col1{
-            background-color:  #5ba3d0;
-            color:  #000000;
-        }#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row3_col5,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row4_col2{
-            background-color:  #b7d4ea;
-            color:  #000000;
-        }#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row4_col1{
+        }#T_3037e81c_c47c_11ec_b8ea_7210a9758097row0_col2{
             background-color:  #3b8bc2;
             color:  #000000;
-        }#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row5_col3,#T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row6_col1{
+        }#T_3037e81c_c47c_11ec_b8ea_7210a9758097row0_col3,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row6_col1,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row7_col1{
+            background-color:  #4a98c9;
+            color:  #000000;
+        }#T_3037e81c_c47c_11ec_b8ea_7210a9758097row0_col4{
+            background-color:  #6aaed6;
+            color:  #000000;
+        }#T_3037e81c_c47c_11ec_b8ea_7210a9758097row0_col5,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row0_col6,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row0_col8,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row1_col4,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row1_col5,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row1_col6,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row1_col7,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row3_col2,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row5_col3,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row6_col2{
+            background-color:  #a6cee4;
+            color:  #000000;
+        }#T_3037e81c_c47c_11ec_b8ea_7210a9758097row0_col7,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row1_col3{
             background-color:  #94c4df;
             color:  #000000;
-        }</style><table id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099" ><thead>    <tr>        <th class="index_name level0" >duration</th>        <th class="col_heading level0 col0" >0</th>        <th class="col_heading level0 col1" >1</th>        <th class="col_heading level0 col2" >2</th>        <th class="col_heading level0 col3" >3</th>        <th class="col_heading level0 col4" >4</th>        <th class="col_heading level0 col5" >5</th>        <th class="col_heading level0 col6" >6</th>        <th class="col_heading level0 col7" >7</th>        <th class="col_heading level0 col8" >8</th>    </tr>    <tr>        <th class="index_name level0" >cohort</th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>    </tr></thead><tbody>
+        }#T_3037e81c_c47c_11ec_b8ea_7210a9758097row1_col1{
+            background-color:  #2171b5;
+            color:  #f1f1f1;
+        }#T_3037e81c_c47c_11ec_b8ea_7210a9758097row1_col2,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row3_col1{
+            background-color:  #5ba3d0;
+            color:  #000000;
+        }#T_3037e81c_c47c_11ec_b8ea_7210a9758097row1_col8,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row2_col7,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row2_col8,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row3_col6,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row3_col7,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row3_col8,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row4_col5,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row4_col6,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row4_col7,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row4_col8,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row5_col4,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row5_col5,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row5_col6,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row5_col7,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row5_col8,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row6_col3,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row6_col4,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row6_col5,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row6_col6,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row6_col7,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row6_col8,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row7_col2,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row7_col3,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row7_col4,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row7_col5,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row7_col6,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row7_col7,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row7_col8,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row8_col1,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row8_col2,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row8_col3,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row8_col4,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row8_col5,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row8_col6,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row8_col7,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row8_col8{
+            background-color:  #f7fbff;
+            color:  #000000;
+        }#T_3037e81c_c47c_11ec_b8ea_7210a9758097row2_col1{
+            background-color:  #2e7ebc;
+            color:  #000000;
+        }#T_3037e81c_c47c_11ec_b8ea_7210a9758097row2_col2,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row4_col1,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row5_col1,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row5_col2{
+            background-color:  #7fb9da;
+            color:  #000000;
+        }#T_3037e81c_c47c_11ec_b8ea_7210a9758097row2_col3,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row2_col5,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row2_col6,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row3_col3,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row3_col4,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row3_col5,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row4_col3{
+            background-color:  #b7d4ea;
+            color:  #000000;
+        }#T_3037e81c_c47c_11ec_b8ea_7210a9758097row2_col4,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row4_col2,#T_3037e81c_c47c_11ec_b8ea_7210a9758097row4_col4{
+            background-color:  #c6dbef;
+            color:  #000000;
+        }</style><table id="T_3037e81c_c47c_11ec_b8ea_7210a9758097" ><thead>    <tr>        <th class="index_name level0" >duration</th>        <th class="col_heading level0 col0" >0</th>        <th class="col_heading level0 col1" >1</th>        <th class="col_heading level0 col2" >2</th>        <th class="col_heading level0 col3" >3</th>        <th class="col_heading level0 col4" >4</th>        <th class="col_heading level0 col5" >5</th>        <th class="col_heading level0 col6" >6</th>        <th class="col_heading level0 col7" >7</th>        <th class="col_heading level0 col8" >8</th>    </tr>    <tr>        <th class="index_name level0" >cohort</th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>    </tr></thead><tbody>
                 <tr>
-                        <th id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099level0_row0" class="row_heading level0 row0" >39</th>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row0_col0" class="data row0 col0" >100%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row0_col1" class="data row0 col1" >15%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row0_col2" class="data row0 col2" >12%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row0_col3" class="data row0 col3" >12%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row0_col4" class="data row0 col4" >11%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row0_col5" class="data row0 col5" >8%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row0_col6" class="data row0 col6" >7%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row0_col7" class="data row0 col7" >9%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row0_col8" class="data row0 col8" >9%</td>
+                        <th id="T_3037e81c_c47c_11ec_b8ea_7210a9758097level0_row0" class="row_heading level0 row0" >39</th>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row0_col0" class="data row0 col0" >100%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row0_col1" class="data row0 col1" >17%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row0_col2" class="data row0 col2" >13%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row0_col3" class="data row0 col3" >12%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row0_col4" class="data row0 col4" >10%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row0_col5" class="data row0 col5" >7%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row0_col6" class="data row0 col6" >7%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row0_col7" class="data row0 col7" >8%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row0_col8" class="data row0 col8" >7%</td>
             </tr>
             <tr>
-                        <th id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099level0_row1" class="row_heading level0 row1" >40</th>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row1_col0" class="data row1 col0" >100%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row1_col1" class="data row1 col1" >12%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row1_col2" class="data row1 col2" >10%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row1_col3" class="data row1 col3" >4%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row1_col4" class="data row1 col4" >4%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row1_col5" class="data row1 col5" >4%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row1_col6" class="data row1 col6" >5%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row1_col7" class="data row1 col7" >5%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row1_col8" class="data row1 col8" >0%</td>
+                        <th id="T_3037e81c_c47c_11ec_b8ea_7210a9758097level0_row1" class="row_heading level0 row1" >40</th>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row1_col0" class="data row1 col0" >100%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row1_col1" class="data row1 col1" >15%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row1_col2" class="data row1 col2" >11%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row1_col3" class="data row1 col3" >8%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row1_col4" class="data row1 col4" >7%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row1_col5" class="data row1 col5" >7%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row1_col6" class="data row1 col6" >7%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row1_col7" class="data row1 col7" >7%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row1_col8" class="data row1 col8" >0%</td>
             </tr>
             <tr>
-                        <th id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099level0_row2" class="row_heading level0 row2" >41</th>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row2_col0" class="data row2 col0" >100%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row2_col1" class="data row2 col1" >15%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row2_col2" class="data row2 col2" >9%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row2_col3" class="data row2 col3" >9%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row2_col4" class="data row2 col4" >9%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row2_col5" class="data row2 col5" >7%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row2_col6" class="data row2 col6" >7%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row2_col7" class="data row2 col7" >0%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row2_col8" class="data row2 col8" >0%</td>
+                        <th id="T_3037e81c_c47c_11ec_b8ea_7210a9758097level0_row2" class="row_heading level0 row2" >41</th>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row2_col0" class="data row2 col0" >100%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row2_col1" class="data row2 col1" >14%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row2_col2" class="data row2 col2" >9%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row2_col3" class="data row2 col3" >6%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row2_col4" class="data row2 col4" >5%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row2_col5" class="data row2 col5" >6%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row2_col6" class="data row2 col6" >6%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row2_col7" class="data row2 col7" >0%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row2_col8" class="data row2 col8" >0%</td>
             </tr>
             <tr>
-                        <th id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099level0_row3" class="row_heading level0 row3" >42</th>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row3_col0" class="data row3 col0" >100%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row3_col1" class="data row3 col1" >11%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row3_col2" class="data row3 col2" >7%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row3_col3" class="data row3 col3" >4%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row3_col4" class="data row3 col4" >4%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row3_col5" class="data row3 col5" >6%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row3_col6" class="data row3 col6" >0%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row3_col7" class="data row3 col7" >0%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row3_col8" class="data row3 col8" >0%</td>
+                        <th id="T_3037e81c_c47c_11ec_b8ea_7210a9758097level0_row3" class="row_heading level0 row3" >42</th>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row3_col0" class="data row3 col0" >100%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row3_col1" class="data row3 col1" >11%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row3_col2" class="data row3 col2" >7%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row3_col3" class="data row3 col3" >6%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row3_col4" class="data row3 col4" >6%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row3_col5" class="data row3 col5" >6%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row3_col6" class="data row3 col6" >0%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row3_col7" class="data row3 col7" >0%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row3_col8" class="data row3 col8" >0%</td>
             </tr>
             <tr>
-                        <th id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099level0_row4" class="row_heading level0 row4" >43</th>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row4_col0" class="data row4 col0" >100%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row4_col1" class="data row4 col1" >13%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row4_col2" class="data row4 col2" >6%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row4_col3" class="data row4 col3" >4%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row4_col4" class="data row4 col4" >7%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row4_col5" class="data row4 col5" >0%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row4_col6" class="data row4 col6" >0%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row4_col7" class="data row4 col7" >0%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row4_col8" class="data row4 col8" >0%</td>
+                        <th id="T_3037e81c_c47c_11ec_b8ea_7210a9758097level0_row4" class="row_heading level0 row4" >43</th>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row4_col0" class="data row4 col0" >100%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row4_col1" class="data row4 col1" >9%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row4_col2" class="data row4 col2" >5%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row4_col3" class="data row4 col3" >6%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row4_col4" class="data row4 col4" >5%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row4_col5" class="data row4 col5" >0%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row4_col6" class="data row4 col6" >0%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row4_col7" class="data row4 col7" >0%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row4_col8" class="data row4 col8" >0%</td>
             </tr>
             <tr>
-                        <th id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099level0_row5" class="row_heading level0 row5" >44</th>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row5_col0" class="data row5 col0" >100%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row5_col1" class="data row5 col1" >11%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row5_col2" class="data row5 col2" >9%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row5_col3" class="data row5 col3" >8%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row5_col4" class="data row5 col4" >0%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row5_col5" class="data row5 col5" >0%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row5_col6" class="data row5 col6" >0%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row5_col7" class="data row5 col7" >0%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row5_col8" class="data row5 col8" >0%</td>
+                        <th id="T_3037e81c_c47c_11ec_b8ea_7210a9758097level0_row5" class="row_heading level0 row5" >44</th>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row5_col0" class="data row5 col0" >100%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row5_col1" class="data row5 col1" >9%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row5_col2" class="data row5 col2" >9%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row5_col3" class="data row5 col3" >7%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row5_col4" class="data row5 col4" >0%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row5_col5" class="data row5 col5" >0%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row5_col6" class="data row5 col6" >0%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row5_col7" class="data row5 col7" >0%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row5_col8" class="data row5 col8" >0%</td>
             </tr>
             <tr>
-                        <th id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099level0_row6" class="row_heading level0 row6" >45</th>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row6_col0" class="data row6 col0" >100%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row6_col1" class="data row6 col1" >8%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row6_col2" class="data row6 col2" >5%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row6_col3" class="data row6 col3" >0%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row6_col4" class="data row6 col4" >0%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row6_col5" class="data row6 col5" >0%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row6_col6" class="data row6 col6" >0%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row6_col7" class="data row6 col7" >0%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row6_col8" class="data row6 col8" >0%</td>
+                        <th id="T_3037e81c_c47c_11ec_b8ea_7210a9758097level0_row6" class="row_heading level0 row6" >45</th>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row6_col0" class="data row6 col0" >100%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row6_col1" class="data row6 col1" >12%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row6_col2" class="data row6 col2" >7%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row6_col3" class="data row6 col3" >0%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row6_col4" class="data row6 col4" >0%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row6_col5" class="data row6 col5" >0%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row6_col6" class="data row6 col6" >0%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row6_col7" class="data row6 col7" >0%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row6_col8" class="data row6 col8" >0%</td>
             </tr>
             <tr>
-                        <th id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099level0_row7" class="row_heading level0 row7" >46</th>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row7_col0" class="data row7 col0" >100%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row7_col1" class="data row7 col1" >12%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row7_col2" class="data row7 col2" >0%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row7_col3" class="data row7 col3" >0%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row7_col4" class="data row7 col4" >0%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row7_col5" class="data row7 col5" >0%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row7_col6" class="data row7 col6" >0%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row7_col7" class="data row7 col7" >0%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row7_col8" class="data row7 col8" >0%</td>
+                        <th id="T_3037e81c_c47c_11ec_b8ea_7210a9758097level0_row7" class="row_heading level0 row7" >46</th>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row7_col0" class="data row7 col0" >100%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row7_col1" class="data row7 col1" >12%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row7_col2" class="data row7 col2" >0%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row7_col3" class="data row7 col3" >0%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row7_col4" class="data row7 col4" >0%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row7_col5" class="data row7 col5" >0%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row7_col6" class="data row7 col6" >0%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row7_col7" class="data row7 col7" >0%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row7_col8" class="data row7 col8" >0%</td>
             </tr>
             <tr>
-                        <th id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099level0_row8" class="row_heading level0 row8" >47</th>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row8_col0" class="data row8 col0" >100%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row8_col1" class="data row8 col1" >0%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row8_col2" class="data row8 col2" >0%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row8_col3" class="data row8 col3" >0%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row8_col4" class="data row8 col4" >0%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row8_col5" class="data row8 col5" >0%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row8_col6" class="data row8 col6" >0%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row8_col7" class="data row8 col7" >0%</td>
-                        <td id="T_ea3ccd04_bf04_11ec_8e4c_7210a9758099row8_col8" class="data row8 col8" >0%</td>
+                        <th id="T_3037e81c_c47c_11ec_b8ea_7210a9758097level0_row8" class="row_heading level0 row8" >47</th>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row8_col0" class="data row8 col0" >100%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row8_col1" class="data row8 col1" >0%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row8_col2" class="data row8 col2" >0%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row8_col3" class="data row8 col3" >0%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row8_col4" class="data row8 col4" >0%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row8_col5" class="data row8 col5" >0%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row8_col6" class="data row8 col6" >0%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row8_col7" class="data row8 col7" >0%</td>
+                        <td id="T_3037e81c_c47c_11ec_b8ea_7210a9758097row8_col8" class="data row8 col8" >0%</td>
             </tr>
     </tbody></table>
 
@@ -729,6 +717,7 @@ round(pivot_table.div(pivot_table[0], axis='index'), 2)\
 <div class="exclamation">
 일반적으로 코호트는 상호배타적(mutually exclusive)이다. 즉, 코호트끼리 겹치지 않는다. 아래 예시에서는 번거로움을 피하고자 그런 과정을 거치지 않았는데, 이 점은 주의하기 바람!
 </div>
+
 
 ```python
 result_2 = con.execute("""
@@ -834,83 +823,83 @@ pivot_table_2
   <tbody>
     <tr>
       <th>runail</th>
-      <td>168.0</td>
-      <td>19.0</td>
-      <td>11.0</td>
-      <td>10.0</td>
-      <td>3.0</td>
+      <td>1641.0</td>
+      <td>182.0</td>
+      <td>104.0</td>
+      <td>67.0</td>
+      <td>15.0</td>
     </tr>
     <tr>
       <th>irisk</th>
-      <td>147.0</td>
-      <td>13.0</td>
-      <td>9.0</td>
-      <td>3.0</td>
-      <td>2.0</td>
+      <td>1354.0</td>
+      <td>126.0</td>
+      <td>77.0</td>
+      <td>52.0</td>
+      <td>25.0</td>
     </tr>
     <tr>
       <th>masura</th>
-      <td>107.0</td>
-      <td>8.0</td>
-      <td>3.0</td>
-      <td>2.0</td>
-      <td>1.0</td>
+      <td>840.0</td>
+      <td>99.0</td>
+      <td>52.0</td>
+      <td>26.0</td>
+      <td>11.0</td>
     </tr>
     <tr>
       <th>grattol</th>
-      <td>79.0</td>
-      <td>8.0</td>
-      <td>6.0</td>
-      <td>2.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>ingarden</th>
-      <td>67.0</td>
-      <td>8.0</td>
-      <td>4.0</td>
-      <td>2.0</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>jessnail</th>
-      <td>64.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>bpw.style</th>
-      <td>62.0</td>
-      <td>7.0</td>
-      <td>4.0</td>
-      <td>2.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>kapous</th>
-      <td>58.0</td>
-      <td>7.0</td>
-      <td>2.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>730.0</td>
+      <td>106.0</td>
+      <td>50.0</td>
+      <td>29.0</td>
+      <td>11.0</td>
     </tr>
     <tr>
       <th>estel</th>
-      <td>51.0</td>
-      <td>1.0</td>
+      <td>649.0</td>
+      <td>28.0</td>
+      <td>13.0</td>
+      <td>8.0</td>
       <td>3.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>jessnail</th>
+      <td>595.0</td>
+      <td>38.0</td>
+      <td>13.0</td>
+      <td>6.0</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>ingarden</th>
+      <td>560.0</td>
+      <td>61.0</td>
+      <td>28.0</td>
+      <td>15.0</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>kapous</th>
+      <td>512.0</td>
+      <td>24.0</td>
+      <td>14.0</td>
+      <td>5.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>bpw.style</th>
+      <td>467.0</td>
+      <td>46.0</td>
+      <td>30.0</td>
+      <td>13.0</td>
+      <td>4.0</td>
     </tr>
     <tr>
       <th>uno</th>
-      <td>47.0</td>
-      <td>6.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>466.0</td>
+      <td>34.0</td>
+      <td>19.0</td>
+      <td>9.0</td>
+      <td>5.0</td>
     </tr>
   </tbody>
 </table>
@@ -926,150 +915,135 @@ pivot_table_2
 
 round(pivot_table_2.div(pivot_table_2[0], axis='index'), 2)\
     .style.format({k: '{:,.0%}'.format for k in pivot_table_2})\
-    .background_gradient(cmap ='Blues', axis='columns', vmax=0.2) 
+    .background_gradient(cmap ='Blues', axis=None, vmax=0.2) 
 ```
 
 
 
 
 <style  type="text/css" >
-#T_087ca96a_bf05_11ec_8e4c_7210a9758099row0_col0,#T_087ca96a_bf05_11ec_8e4c_7210a9758099row1_col0,#T_087ca96a_bf05_11ec_8e4c_7210a9758099row2_col0,#T_087ca96a_bf05_11ec_8e4c_7210a9758099row3_col0,#T_087ca96a_bf05_11ec_8e4c_7210a9758099row4_col0,#T_087ca96a_bf05_11ec_8e4c_7210a9758099row5_col0,#T_087ca96a_bf05_11ec_8e4c_7210a9758099row6_col0,#T_087ca96a_bf05_11ec_8e4c_7210a9758099row7_col0,#T_087ca96a_bf05_11ec_8e4c_7210a9758099row8_col0,#T_087ca96a_bf05_11ec_8e4c_7210a9758099row9_col0{
+#T_32648b2c_c47c_11ec_b8ea_7210a9758097row0_col0,#T_32648b2c_c47c_11ec_b8ea_7210a9758097row1_col0,#T_32648b2c_c47c_11ec_b8ea_7210a9758097row2_col0,#T_32648b2c_c47c_11ec_b8ea_7210a9758097row3_col0,#T_32648b2c_c47c_11ec_b8ea_7210a9758097row4_col0,#T_32648b2c_c47c_11ec_b8ea_7210a9758097row5_col0,#T_32648b2c_c47c_11ec_b8ea_7210a9758097row6_col0,#T_32648b2c_c47c_11ec_b8ea_7210a9758097row7_col0,#T_32648b2c_c47c_11ec_b8ea_7210a9758097row8_col0,#T_32648b2c_c47c_11ec_b8ea_7210a9758097row9_col0{
             background-color:  #08306b;
             color:  #f1f1f1;
-        }#T_087ca96a_bf05_11ec_8e4c_7210a9758099row0_col1{
-            background-color:  #6caed6;
-            color:  #000000;
-        }#T_087ca96a_bf05_11ec_8e4c_7210a9758099row0_col2{
-            background-color:  #bdd7ec;
-            color:  #000000;
-        }#T_087ca96a_bf05_11ec_8e4c_7210a9758099row0_col3{
-            background-color:  #ccdff1;
-            color:  #000000;
-        }#T_087ca96a_bf05_11ec_8e4c_7210a9758099row0_col4,#T_087ca96a_bf05_11ec_8e4c_7210a9758099row1_col4,#T_087ca96a_bf05_11ec_8e4c_7210a9758099row2_col4,#T_087ca96a_bf05_11ec_8e4c_7210a9758099row3_col4,#T_087ca96a_bf05_11ec_8e4c_7210a9758099row4_col4,#T_087ca96a_bf05_11ec_8e4c_7210a9758099row5_col3,#T_087ca96a_bf05_11ec_8e4c_7210a9758099row5_col4,#T_087ca96a_bf05_11ec_8e4c_7210a9758099row6_col4,#T_087ca96a_bf05_11ec_8e4c_7210a9758099row7_col3,#T_087ca96a_bf05_11ec_8e4c_7210a9758099row7_col4,#T_087ca96a_bf05_11ec_8e4c_7210a9758099row8_col3,#T_087ca96a_bf05_11ec_8e4c_7210a9758099row8_col4,#T_087ca96a_bf05_11ec_8e4c_7210a9758099row9_col3,#T_087ca96a_bf05_11ec_8e4c_7210a9758099row9_col4{
-            background-color:  #f7fbff;
-            color:  #000000;
-        }#T_087ca96a_bf05_11ec_8e4c_7210a9758099row1_col1{
-            background-color:  #8cc0dd;
-            color:  #000000;
-        }#T_087ca96a_bf05_11ec_8e4c_7210a9758099row1_col2,#T_087ca96a_bf05_11ec_8e4c_7210a9758099row4_col2{
-            background-color:  #c2d9ee;
-            color:  #000000;
-        }#T_087ca96a_bf05_11ec_8e4c_7210a9758099row1_col3,#T_087ca96a_bf05_11ec_8e4c_7210a9758099row2_col3{
-            background-color:  #edf4fc;
-            color:  #000000;
-        }#T_087ca96a_bf05_11ec_8e4c_7210a9758099row2_col1{
-            background-color:  #b2d2e8;
-            color:  #000000;
-        }#T_087ca96a_bf05_11ec_8e4c_7210a9758099row2_col2,#T_087ca96a_bf05_11ec_8e4c_7210a9758099row4_col3{
-            background-color:  #e3eef8;
-            color:  #000000;
-        }#T_087ca96a_bf05_11ec_8e4c_7210a9758099row3_col1{
-            background-color:  #6aaed6;
-            color:  #000000;
-        }#T_087ca96a_bf05_11ec_8e4c_7210a9758099row3_col2{
-            background-color:  #94c4df;
-            color:  #000000;
-        }#T_087ca96a_bf05_11ec_8e4c_7210a9758099row3_col3,#T_087ca96a_bf05_11ec_8e4c_7210a9758099row6_col3,#T_087ca96a_bf05_11ec_8e4c_7210a9758099row7_col2{
-            background-color:  #d9e8f5;
-            color:  #000000;
-        }#T_087ca96a_bf05_11ec_8e4c_7210a9758099row4_col1{
-            background-color:  #519ccc;
-            color:  #000000;
-        }#T_087ca96a_bf05_11ec_8e4c_7210a9758099row5_col1,#T_087ca96a_bf05_11ec_8e4c_7210a9758099row5_col2,#T_087ca96a_bf05_11ec_8e4c_7210a9758099row8_col1,#T_087ca96a_bf05_11ec_8e4c_7210a9758099row9_col2{
-            background-color:  #e3eef9;
-            color:  #000000;
-        }#T_087ca96a_bf05_11ec_8e4c_7210a9758099row6_col1{
+        }#T_32648b2c_c47c_11ec_b8ea_7210a9758097row0_col1,#T_32648b2c_c47c_11ec_b8ea_7210a9758097row6_col1{
             background-color:  #5ba3d0;
             color:  #000000;
-        }#T_087ca96a_bf05_11ec_8e4c_7210a9758099row6_col2,#T_087ca96a_bf05_11ec_8e4c_7210a9758099row8_col2{
+        }#T_32648b2c_c47c_11ec_b8ea_7210a9758097row0_col2,#T_32648b2c_c47c_11ec_b8ea_7210a9758097row1_col2,#T_32648b2c_c47c_11ec_b8ea_7210a9758097row2_col2,#T_32648b2c_c47c_11ec_b8ea_7210a9758097row5_col1,#T_32648b2c_c47c_11ec_b8ea_7210a9758097row8_col2{
             background-color:  #b7d4ea;
             color:  #000000;
-        }#T_087ca96a_bf05_11ec_8e4c_7210a9758099row7_col1{
+        }#T_32648b2c_c47c_11ec_b8ea_7210a9758097row0_col3,#T_32648b2c_c47c_11ec_b8ea_7210a9758097row1_col3,#T_32648b2c_c47c_11ec_b8ea_7210a9758097row3_col3,#T_32648b2c_c47c_11ec_b8ea_7210a9758097row4_col1,#T_32648b2c_c47c_11ec_b8ea_7210a9758097row9_col2{
+            background-color:  #d0e1f2;
+            color:  #000000;
+        }#T_32648b2c_c47c_11ec_b8ea_7210a9758097row0_col4,#T_32648b2c_c47c_11ec_b8ea_7210a9758097row2_col4,#T_32648b2c_c47c_11ec_b8ea_7210a9758097row4_col3,#T_32648b2c_c47c_11ec_b8ea_7210a9758097row5_col3,#T_32648b2c_c47c_11ec_b8ea_7210a9758097row5_col4,#T_32648b2c_c47c_11ec_b8ea_7210a9758097row6_col4,#T_32648b2c_c47c_11ec_b8ea_7210a9758097row7_col3,#T_32648b2c_c47c_11ec_b8ea_7210a9758097row8_col4,#T_32648b2c_c47c_11ec_b8ea_7210a9758097row9_col4{
+            background-color:  #eef5fc;
+            color:  #000000;
+        }#T_32648b2c_c47c_11ec_b8ea_7210a9758097row1_col1{
+            background-color:  #7fb9da;
+            color:  #000000;
+        }#T_32648b2c_c47c_11ec_b8ea_7210a9758097row1_col4,#T_32648b2c_c47c_11ec_b8ea_7210a9758097row3_col4,#T_32648b2c_c47c_11ec_b8ea_7210a9758097row4_col2,#T_32648b2c_c47c_11ec_b8ea_7210a9758097row5_col2,#T_32648b2c_c47c_11ec_b8ea_7210a9758097row9_col3{
+            background-color:  #e3eef9;
+            color:  #000000;
+        }#T_32648b2c_c47c_11ec_b8ea_7210a9758097row2_col1{
             background-color:  #4a98c9;
             color:  #000000;
-        }#T_087ca96a_bf05_11ec_8e4c_7210a9758099row9_col1{
-            background-color:  #3b8bc2;
+        }#T_32648b2c_c47c_11ec_b8ea_7210a9758097row2_col3,#T_32648b2c_c47c_11ec_b8ea_7210a9758097row6_col3,#T_32648b2c_c47c_11ec_b8ea_7210a9758097row7_col2,#T_32648b2c_c47c_11ec_b8ea_7210a9758097row8_col3{
+            background-color:  #d9e8f5;
             color:  #000000;
-        }</style><table id="T_087ca96a_bf05_11ec_8e4c_7210a9758099" ><thead>    <tr>        <th class="index_name level0" >duration</th>        <th class="col_heading level0 col0" >0</th>        <th class="col_heading level0 col1" >1</th>        <th class="col_heading level0 col2" >2</th>        <th class="col_heading level0 col3" >3</th>        <th class="col_heading level0 col4" >4</th>    </tr>    <tr>        <th class="index_name level0" >cohort</th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>    </tr></thead><tbody>
+        }#T_32648b2c_c47c_11ec_b8ea_7210a9758097row3_col1{
+            background-color:  #2171b5;
+            color:  #f1f1f1;
+        }#T_32648b2c_c47c_11ec_b8ea_7210a9758097row3_col2,#T_32648b2c_c47c_11ec_b8ea_7210a9758097row9_col1{
+            background-color:  #a6cee4;
+            color:  #000000;
+        }#T_32648b2c_c47c_11ec_b8ea_7210a9758097row4_col4,#T_32648b2c_c47c_11ec_b8ea_7210a9758097row7_col4{
+            background-color:  #f7fbff;
+            color:  #000000;
+        }#T_32648b2c_c47c_11ec_b8ea_7210a9758097row6_col2,#T_32648b2c_c47c_11ec_b8ea_7210a9758097row7_col1{
+            background-color:  #c6dbef;
+            color:  #000000;
+        }#T_32648b2c_c47c_11ec_b8ea_7210a9758097row8_col1{
+            background-color:  #6aaed6;
+            color:  #000000;
+        }</style><table id="T_32648b2c_c47c_11ec_b8ea_7210a9758097" ><thead>    <tr>        <th class="index_name level0" >duration</th>        <th class="col_heading level0 col0" >0</th>        <th class="col_heading level0 col1" >1</th>        <th class="col_heading level0 col2" >2</th>        <th class="col_heading level0 col3" >3</th>        <th class="col_heading level0 col4" >4</th>    </tr>    <tr>        <th class="index_name level0" >cohort</th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>    </tr></thead><tbody>
                 <tr>
-                        <th id="T_087ca96a_bf05_11ec_8e4c_7210a9758099level0_row0" class="row_heading level0 row0" >runail</th>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row0_col0" class="data row0 col0" >100%</td>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row0_col1" class="data row0 col1" >11%</td>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row0_col2" class="data row0 col2" >7%</td>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row0_col3" class="data row0 col3" >6%</td>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row0_col4" class="data row0 col4" >2%</td>
+                        <th id="T_32648b2c_c47c_11ec_b8ea_7210a9758097level0_row0" class="row_heading level0 row0" >runail</th>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row0_col0" class="data row0 col0" >100%</td>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row0_col1" class="data row0 col1" >11%</td>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row0_col2" class="data row0 col2" >6%</td>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row0_col3" class="data row0 col3" >4%</td>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row0_col4" class="data row0 col4" >1%</td>
             </tr>
             <tr>
-                        <th id="T_087ca96a_bf05_11ec_8e4c_7210a9758099level0_row1" class="row_heading level0 row1" >irisk</th>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row1_col0" class="data row1 col0" >100%</td>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row1_col1" class="data row1 col1" >9%</td>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row1_col2" class="data row1 col2" >6%</td>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row1_col3" class="data row1 col3" >2%</td>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row1_col4" class="data row1 col4" >1%</td>
+                        <th id="T_32648b2c_c47c_11ec_b8ea_7210a9758097level0_row1" class="row_heading level0 row1" >irisk</th>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row1_col0" class="data row1 col0" >100%</td>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row1_col1" class="data row1 col1" >9%</td>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row1_col2" class="data row1 col2" >6%</td>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row1_col3" class="data row1 col3" >4%</td>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row1_col4" class="data row1 col4" >2%</td>
             </tr>
             <tr>
-                        <th id="T_087ca96a_bf05_11ec_8e4c_7210a9758099level0_row2" class="row_heading level0 row2" >masura</th>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row2_col0" class="data row2 col0" >100%</td>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row2_col1" class="data row2 col1" >7%</td>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row2_col2" class="data row2 col2" >3%</td>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row2_col3" class="data row2 col3" >2%</td>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row2_col4" class="data row2 col4" >1%</td>
+                        <th id="T_32648b2c_c47c_11ec_b8ea_7210a9758097level0_row2" class="row_heading level0 row2" >masura</th>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row2_col0" class="data row2 col0" >100%</td>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row2_col1" class="data row2 col1" >12%</td>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row2_col2" class="data row2 col2" >6%</td>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row2_col3" class="data row2 col3" >3%</td>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row2_col4" class="data row2 col4" >1%</td>
             </tr>
             <tr>
-                        <th id="T_087ca96a_bf05_11ec_8e4c_7210a9758099level0_row3" class="row_heading level0 row3" >grattol</th>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row3_col0" class="data row3 col0" >100%</td>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row3_col1" class="data row3 col1" >10%</td>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row3_col2" class="data row3 col2" >8%</td>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row3_col3" class="data row3 col3" >3%</td>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row3_col4" class="data row3 col4" >0%</td>
+                        <th id="T_32648b2c_c47c_11ec_b8ea_7210a9758097level0_row3" class="row_heading level0 row3" >grattol</th>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row3_col0" class="data row3 col0" >100%</td>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row3_col1" class="data row3 col1" >15%</td>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row3_col2" class="data row3 col2" >7%</td>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row3_col3" class="data row3 col3" >4%</td>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row3_col4" class="data row3 col4" >2%</td>
             </tr>
             <tr>
-                        <th id="T_087ca96a_bf05_11ec_8e4c_7210a9758099level0_row4" class="row_heading level0 row4" >ingarden</th>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row4_col0" class="data row4 col0" >100%</td>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row4_col1" class="data row4 col1" >12%</td>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row4_col2" class="data row4 col2" >6%</td>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row4_col3" class="data row4 col3" >3%</td>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row4_col4" class="data row4 col4" >1%</td>
+                        <th id="T_32648b2c_c47c_11ec_b8ea_7210a9758097level0_row4" class="row_heading level0 row4" >estel</th>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row4_col0" class="data row4 col0" >100%</td>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row4_col1" class="data row4 col1" >4%</td>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row4_col2" class="data row4 col2" >2%</td>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row4_col3" class="data row4 col3" >1%</td>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row4_col4" class="data row4 col4" >0%</td>
             </tr>
             <tr>
-                        <th id="T_087ca96a_bf05_11ec_8e4c_7210a9758099level0_row5" class="row_heading level0 row5" >jessnail</th>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row5_col0" class="data row5 col0" >100%</td>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row5_col1" class="data row5 col1" >2%</td>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row5_col2" class="data row5 col2" >2%</td>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row5_col3" class="data row5 col3" >0%</td>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row5_col4" class="data row5 col4" >0%</td>
+                        <th id="T_32648b2c_c47c_11ec_b8ea_7210a9758097level0_row5" class="row_heading level0 row5" >jessnail</th>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row5_col0" class="data row5 col0" >100%</td>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row5_col1" class="data row5 col1" >6%</td>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row5_col2" class="data row5 col2" >2%</td>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row5_col3" class="data row5 col3" >1%</td>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row5_col4" class="data row5 col4" >1%</td>
             </tr>
             <tr>
-                        <th id="T_087ca96a_bf05_11ec_8e4c_7210a9758099level0_row6" class="row_heading level0 row6" >bpw.style</th>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row6_col0" class="data row6 col0" >100%</td>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row6_col1" class="data row6 col1" >11%</td>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row6_col2" class="data row6 col2" >6%</td>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row6_col3" class="data row6 col3" >3%</td>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row6_col4" class="data row6 col4" >0%</td>
+                        <th id="T_32648b2c_c47c_11ec_b8ea_7210a9758097level0_row6" class="row_heading level0 row6" >ingarden</th>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row6_col0" class="data row6 col0" >100%</td>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row6_col1" class="data row6 col1" >11%</td>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row6_col2" class="data row6 col2" >5%</td>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row6_col3" class="data row6 col3" >3%</td>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row6_col4" class="data row6 col4" >1%</td>
             </tr>
             <tr>
-                        <th id="T_087ca96a_bf05_11ec_8e4c_7210a9758099level0_row7" class="row_heading level0 row7" >kapous</th>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row7_col0" class="data row7 col0" >100%</td>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row7_col1" class="data row7 col1" >12%</td>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row7_col2" class="data row7 col2" >3%</td>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row7_col3" class="data row7 col3" >0%</td>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row7_col4" class="data row7 col4" >0%</td>
+                        <th id="T_32648b2c_c47c_11ec_b8ea_7210a9758097level0_row7" class="row_heading level0 row7" >kapous</th>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row7_col0" class="data row7 col0" >100%</td>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row7_col1" class="data row7 col1" >5%</td>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row7_col2" class="data row7 col2" >3%</td>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row7_col3" class="data row7 col3" >1%</td>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row7_col4" class="data row7 col4" >0%</td>
             </tr>
             <tr>
-                        <th id="T_087ca96a_bf05_11ec_8e4c_7210a9758099level0_row8" class="row_heading level0 row8" >estel</th>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row8_col0" class="data row8 col0" >100%</td>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row8_col1" class="data row8 col1" >2%</td>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row8_col2" class="data row8 col2" >6%</td>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row8_col3" class="data row8 col3" >0%</td>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row8_col4" class="data row8 col4" >0%</td>
+                        <th id="T_32648b2c_c47c_11ec_b8ea_7210a9758097level0_row8" class="row_heading level0 row8" >bpw.style</th>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row8_col0" class="data row8 col0" >100%</td>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row8_col1" class="data row8 col1" >10%</td>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row8_col2" class="data row8 col2" >6%</td>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row8_col3" class="data row8 col3" >3%</td>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row8_col4" class="data row8 col4" >1%</td>
             </tr>
             <tr>
-                        <th id="T_087ca96a_bf05_11ec_8e4c_7210a9758099level0_row9" class="row_heading level0 row9" >uno</th>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row9_col0" class="data row9 col0" >100%</td>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row9_col1" class="data row9 col1" >13%</td>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row9_col2" class="data row9 col2" >2%</td>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row9_col3" class="data row9 col3" >0%</td>
-                        <td id="T_087ca96a_bf05_11ec_8e4c_7210a9758099row9_col4" class="data row9 col4" >0%</td>
+                        <th id="T_32648b2c_c47c_11ec_b8ea_7210a9758097level0_row9" class="row_heading level0 row9" >uno</th>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row9_col0" class="data row9 col0" >100%</td>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row9_col1" class="data row9 col1" >7%</td>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row9_col2" class="data row9 col2" >4%</td>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row9_col3" class="data row9 col3" >2%</td>
+                        <td id="T_32648b2c_c47c_11ec_b8ea_7210a9758097row9_col4" class="data row9 col4" >1%</td>
             </tr>
     </tbody></table>
 
