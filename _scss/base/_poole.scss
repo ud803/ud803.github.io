@@ -48,7 +48,7 @@ body {
 }
 
 html {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Arial", "Noto Sans KR", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 1.5;
 }
@@ -86,13 +86,15 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.25;
   color: #313131;
   text-rendering: optimizeLegibility;
+  font-family: "Arial", "Noto Sans KR", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 h1 {
   font-size: 2rem;
+  font-family: "Arial", "Noto Sans KR", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 h2 {
   margin-top: 1rem;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
 }
 h3 {
   margin-top: 1.5rem;
@@ -107,6 +109,8 @@ h4, h5, h6 {
 p {
   margin-top: 0;
   margin-bottom: 1rem;
+  font-family: "Arial", "Noto Sans KR", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
 }
 
 strong {
@@ -118,6 +122,8 @@ strong {
 ul, ol, dl {
   margin-top: 0;
   margin-bottom: 1rem;
+  font-family: "Arial", "Noto Sans KR", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
 }
 
 dt {
@@ -150,11 +156,10 @@ abbr[title] {
 /* Code */
 code,
 pre {
-  font-family: Menlo, Monaco, "Courier New", monospace;
+  font-family: monospace, Menlo, Monaco, "Courier New", monospace;
 }
 code {
   padding: .25em .5em;
-  font-size: 85%;
   color: #bf616a;
   background-color: #f9f9f9;
   border-radius: 3px;
@@ -179,12 +184,14 @@ pre code {
   font-size: 100%;
   color: inherit;
   background-color: transparent;
+  font-size: 14px;
 }
 
 /* Pygments via Jekyll */
 .highlight {
   margin-bottom: 1rem;
   border-radius: 4px;
+  font-size: 13px;
 }
 .highlight pre {
   margin-bottom: 0;
@@ -286,6 +293,7 @@ tbody tr:nth-child(odd) th {
   border-color: #bce8f1;
   border: 1px solid transparent;
   border-radius: 4px;
+  font-family: "Arial", "Noto Sans KR", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .tip:before {
@@ -301,6 +309,7 @@ tbody tr:nth-child(odd) th {
   border-color: #d6e9c6;
   border: 1px solid transparent;
   border-radius: 4px;
+  font-family: "Arial", "Noto Sans KR", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .warning:before {
@@ -315,6 +324,7 @@ tbody tr:nth-child(odd) th {
   border-color: #ebccd1;
   border: 1px solid transparent;
   border-radius: 4px;
+  font-family: "Arial", "Noto Sans KR", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .exclamation:before {
@@ -329,6 +339,7 @@ tbody tr:nth-child(odd) th {
   border-color: #faebcc;
   border: 1px solid transparent;
   border-radius: 4px;
+  font-family: "Arial", "Noto Sans KR", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 /*
  * Container
@@ -381,7 +392,7 @@ tbody tr:nth-child(odd) th {
 
 .page,
 .post {
-  margin-bottom: 4em;
+  margin-bottom: em;
 }
 
 /* Blog post or page title */
@@ -389,10 +400,12 @@ tbody tr:nth-child(odd) th {
 .post-title,
 .post-title a {
   color: #303030;
+  font-family: "Arial", "Noto Sans KR", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .page-title,
 .post-title {
   margin-top: 0;
+  
 }
 
 /* Meta data line below post title */
