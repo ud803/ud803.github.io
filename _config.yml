@@ -33,8 +33,9 @@ nav:
     - '/'
   Blog:           
     - '/blog/'
-    - { Categories: '/blog/categories/' }
-    - { Tags: '/blog/tags/' }
+    - { 최신 글: '/blog/recent/' }
+    - { 주제별: '/blog/categories/' }
+    - { 태그별: '/blog/tags/' }
   About:          
     - '/about/'
 

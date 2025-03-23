@@ -1,0 +1,26 @@
+---
+layout: page
+title: Recent Posts
+---
+
+<div class="tags-expo">
+  <div class="tags-expo-section">
+    {% assign sorted_posts = site.posts | sort: 'date' | reverse %}
+    {% assign current_date = "" %}
+    {% for post in sorted_posts %}
+      {% assign post_date = post.date | date: "%Y-%m" %}
+      {% if current_date != post_date %}
+        {% assign current_date = post_date %}
+        <h2>{{ post.date | date: "%Y년 %m월" }}</h2>
+      {% endif %}
+      <ul class="tags-expo-posts">
+        <a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
+        <li>
+          <span style="font-size: 18px;">{{ post.title }}</span>
+          <small class="post-date" style="font-size: 14px;">{{ post.date | date_to_string }}</small>
+        </li>
+        </a>
+      </ul>
+    {% endfor %}
+  </div>
+</div> 
