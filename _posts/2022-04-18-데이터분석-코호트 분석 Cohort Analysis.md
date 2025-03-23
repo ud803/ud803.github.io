@@ -1,6 +1,6 @@
 ---
 layout: post
-title: <데이터분석> 코호트 분석 파헤치기
+title: <분석방법론> 코호트 분석 파헤치기
 categories: 데이터분석
 tags: [데이터분석, 코호트분석]
 ---

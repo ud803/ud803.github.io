@@ -6,6 +6,7 @@
 html,
 body {
   overflow-x: hidden;
+  font-family: Arial
 }
 
 html {
@@ -27,4 +28,55 @@ h1, h2, h3, h4, h5, h6 {
 
 code {
   color: #666;
+}
+
+ul {
+  // list-style: none;
+  padding-left: 20px;
+}
+
+
+blockquote {
+  font-weight: 400;
+  padding: 10px 20px;
+  margin: 10px 0;
+  // border-left: 4px dashed #0084ff;
+  background-color: #f9f9f9; /* 약간의 배경색 추가 */
+  line-height: 1.6;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+}
+
+th, td {
+  padding: 10px;
+  text-align: right; /* ✅ 수평 우측 정렬 */
+  border-bottom: 1px solid #ddd;
+  border-right: 1px solid #ddd; /* ✅ 수직 선 추가 */
+}
+
+th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+  text-align: middle;
+  vertical-align: middle;
+
+}
+
+/* 마지막 열(border-right 제거) */
+td:last-child, th:last-child {
+  border-right: none;
+}
+
+tr:hover {
+  background-color: #f9f9f9;
+}
+
+td:first-child {
+  text-align: center;
+  vertical-align: middle;
+  font-weight: bold;
 }
