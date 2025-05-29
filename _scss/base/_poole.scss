@@ -111,7 +111,7 @@ h4, h5, h6 {
 p {
   margin-top: 0;
   margin-bottom: 1rem;
-  font-family: "Arial", "Noto Sans KR", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: $font-sans;
   font-size: 16px;
 }
 
@@ -124,7 +124,7 @@ strong {
 ul, ol, dl {
   margin-top: 0;
   margin-bottom: 1rem;
-  font-family: "Arial", "Noto Sans KR", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: $font-sans;
   font-size: 16px;
 }
 
@@ -295,7 +295,7 @@ tbody tr:nth-child(odd) th {
   border-color: #bce8f1;
   border: 1px solid transparent;
   border-radius: 4px;
-  font-family: "Arial", "Noto Sans KR", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: $font-sans;
 }
 
 .tip:before {
@@ -311,7 +311,7 @@ tbody tr:nth-child(odd) th {
   border-color: #d6e9c6;
   border: 1px solid transparent;
   border-radius: 4px;
-  font-family: "Arial", "Noto Sans KR", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: $font-sans;
 }
 
 .warning:before {
@@ -326,7 +326,7 @@ tbody tr:nth-child(odd) th {
   border-color: #ebccd1;
   border: 1px solid transparent;
   border-radius: 4px;
-  font-family: "Arial", "Noto Sans KR", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: $font-sans;
 }
 
 .exclamation:before {
@@ -341,7 +341,7 @@ tbody tr:nth-child(odd) th {
   border-color: #faebcc;
   border: 1px solid transparent;
   border-radius: 4px;
-  font-family: "Arial", "Noto Sans KR", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: $font-sans;
 }
 /*
  * Container
@@ -402,7 +402,7 @@ tbody tr:nth-child(odd) th {
 .post-title,
 .post-title a {
   color: #303030;
-  font-family: "Arial", "Noto Sans KR", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: $font-sans;
 }
 .page-title,
 .post-title {
@@ -455,7 +455,7 @@ tbody tr:nth-child(odd) th {
   overflow: hidden; /* clearfix */
   margin-left: -1rem;
   margin-right: -1rem;
-  font-family: "PT Sans", Helvetica, Arial, sans-serif;
+  font-family: $font-sans;
   color: #ccc;
   text-align: center;
 }
